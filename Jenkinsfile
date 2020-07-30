@@ -35,7 +35,7 @@ pipeline {
 }
 	post { 
         always {
-		sh "docker images | grep 'build_${env.BUILD_ID}' | awk {'print $3'} | docker rmi"
+		sh "docker images | grep 'registry.hub.docker' | awk {'print $3'} | docker rmi"
 		cleanWs()
 		}
 	}
