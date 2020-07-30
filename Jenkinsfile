@@ -32,7 +32,7 @@ pipeline {
 				}
 			}
 		}
-     stage('Push image') {
+     stage('Clearing workspace') {
         steps {
         sh "docker rmi -f 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
 		}
