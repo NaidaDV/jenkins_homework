@@ -36,6 +36,7 @@ pipeline {
 	post { 
         always {
 		sh "docker rmi $registry:build_${env.BUILD_ID}"
+		sh "docker rmi -f 'registry.hub.docker.com/naidadv/courses_homework2:build_${env.BUILD_ID}'"
 		cleanWs()
 		}
 	}
