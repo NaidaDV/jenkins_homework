@@ -28,20 +28,16 @@ pipeline {
         script {
                 docker.withRegistry( 'https://registry.hub.docker.com/', registryCredential )  {
                     dockerImage.push()
-					}
 				}
 			}
 		}
-     stage('Clearing workspace') {
-        steps {
-        sh "docker rmi -f 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
-		}
-	}
-     
+	}    
 }
 	post { 
-        always { 
-            cleanWs()
+        always {
+		sh "docker rmi -f $(docker images | grep 'registry.hub.docker' | awk {'print $3'})"
+		sh "docker rmi -f 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
+		cleanWs()
 		}
 	}
 }
