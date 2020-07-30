@@ -35,8 +35,7 @@ pipeline {
 }
 	post { 
         always {
-		sh "docker rmi -f $(docker images | grep 'registry.hub.docker' | awk {'print $3'})"
-		sh "docker rmi -f 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
+		sh "docker rmi -f $(docker images | grep 'build_${env.BUILD_ID}' | awk {'print $3'})"
 		cleanWs()
 		}
 	}
