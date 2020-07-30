@@ -10,10 +10,10 @@ pipeline {
     stage('Building image') {
         steps {
             script {
-                dockerImage = docker.build("naidadv/courses_homework2:build_${env.BUILD_ID}", "/nginx")
+                dockerImage = docker.build("naidadv/courses_homework2:build_${env.BUILD_ID}", "./nginx")
                 }
-			}
-		}
+	}
+}
                     
     stage('Testing image') {
         steps {
@@ -21,18 +21,25 @@ pipeline {
             sh "curl localhost:8081"
             sh "docker stop 'container_${env.BUILD_ID}' && docker rm 'container_${env.BUILD_ID}'"
         }
-	}
-                    
-    
-    
-                    
+}
+                            
     stage('Push image') {
         steps {
         script {
                 docker.withRegistry( 'https://registry.hub.docker.com/', registryCredential )  {
-                    dockerImage.push()}
+                    dockerImage.push()
+					}
 				}
 			}
 		}
-    }    
+     stage('Push image') {
+        steps {
+        sh "docker rmi -f 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
+		}
+	}
+     post { 
+        always { 
+            cleanWs()
+        	}
+	}
 }
