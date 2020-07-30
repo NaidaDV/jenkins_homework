@@ -35,7 +35,7 @@ pipeline {
 }
 	post { 
         always {
-		sh "VAR=\$(docker images | grep 'courses_homework' | awk {'print "$3"'}) && echo $VAR | xargs docker rmi -f"
+		sh "docker rmi $registry:$BUILD_NUMBER"
 		cleanWs()
 		}
 	}
