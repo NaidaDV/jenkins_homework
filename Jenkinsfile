@@ -35,7 +35,7 @@ pipeline {
 }
 	post { 
         always {
-		sh 'docker images | grep "registry.hub.docker" | awk {"print $3"} | docker rmi'
+		sh 'VAR=$(docker images | grep "registry.hub.docker" | awk {"print $3"} | docker rmi) && echo $VAR | xargs docker rmi -f'
 		cleanWs()
 		}
 	}
