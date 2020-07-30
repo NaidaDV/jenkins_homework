@@ -35,12 +35,13 @@ pipeline {
      stage('Push image') {
         steps {
         sh "docker rmi -f 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
+		}
 	}
+     
 }
-     post { 
+	post { 
         always { 
             cleanWs()
-			}
-        	}
+		}
 	}
 }
