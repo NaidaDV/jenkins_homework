@@ -4,7 +4,7 @@ pipeline {
         registryCredential = '74b9705b-baac-41a9-a3b9-e495f96c666e' 
         dockerImage = '' 
     }
-    agent slave_homework 
+    node slave_homework 
             stages {
                 
     stage('Building image') {
