@@ -21,7 +21,7 @@ pipeline {
 				sh "mvn package -f 'second_homework_java_web_app/springbootwebapp/pom.xml'"
 	}
 }
-		stage('Build container') {
+		stage('Building images') {
 			steps {
 				script {
 					docker.build("image:build_${env.BUILD_ID}", "second_homework_java_web_app/")
@@ -40,11 +40,11 @@ pipeline {
 		}
 	}            
 }
-	/*post('Cleaning workspace') { 
+	post('Cleaning workspace') { 
         always {
 			sh "docker stop 'container_${env.BUILD_ID}' && docker rm 'container_${env.BUILD_ID}'"
 			sh "docker rmi -f 'image:build_${env.BUILD_ID}'"
 			cleanWs()
 		}
-	}*/
+	}
 }
