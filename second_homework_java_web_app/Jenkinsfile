@@ -35,7 +35,7 @@ pipeline {
 }
 		stage('Test web-app') {
 			steps {
-				sh "curl localhost:8090"
+				sh "wget -S localhost:8090"
 		}
 	}            
 }
