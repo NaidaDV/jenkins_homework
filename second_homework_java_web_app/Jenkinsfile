@@ -5,7 +5,7 @@ pipeline {
         label 'slave_homework'
 	}
 	tools { 
-        maven 'Maven 3.3.9' 
+        maven 'maven 3.6.3' 
         jdk 'jdk8' 
     }
 }
@@ -13,14 +13,11 @@ pipeline {
                 
     stage('Check maven') {
         steps {
-            sh "if [ $(dpkg-query -W -f='${Status}' nano 2>/dev/null | grep -c "ok installed") -eq 0 ];
-then
-  apt-get install nano;
-fi"
+            sh "mvn -v"
 	}
 }
                     
-    stage('Compiling web-app') {
+    /*stage('Compiling web-app') {
         steps {
             sh "docker run -itd -p '8081:8081' --name 'container_${env.BUILD_ID}' 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
             sh "curl localhost:8081"
@@ -28,16 +25,8 @@ fi"
         }
 }
                             
-    stage('Building Container with app') {
-        steps {
-        script {
-                docker.withRegistry( 'https://registry.hub.docker.com/', registryCredential )  {
-                    dockerImage.push()
-				}
-			}
-		}
-	}    
-}
+    
+}*/
 	post { 
         always {
 		sh "docker rmi $registry:build_${env.BUILD_ID}"
