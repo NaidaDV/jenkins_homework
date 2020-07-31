@@ -1,38 +1,50 @@
 pipeline {
     
 	agent {
-	node {
-        label 'master'
+		node {
+			label 'master'
 	}
-	}
+}
 	tools { 
-        maven 'maven' 
+        maven 'maven 3.6.3' 
         jdk 'jdk8' 
-    }
-            stages {
-                
-    stage('Check maven') {
-        steps {
-            sh "mvn -v"
+}
+    stages { 
+		stage('Check jdk and maven') {
+			steps {
+				sh "java -v"
+				sh "mvn -v"
 	}
 }
-                    
-    /*stage('Compiling web-app') {
-        steps {
-            sh "docker run -itd -p '8081:8081' --name 'container_${env.BUILD_ID}' 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
-            sh "curl localhost:8081"
-            sh "docker stop 'container_${env.BUILD_ID}' && docker rm 'container_${env.BUILD_ID}'"
+		stage('Compiling web-app') {
+			steps {
+				sh "mvn package -f 'second_homework_java_web_app/springbootwebapp/pom.xml'"
+	}
+}
+		stage('Build container') {
+			steps {
+				script {
+					docker.build("image:build_${env.BUILD_ID}", "second_homework_java_web_app/")
         }
+	}
 }
-                            
-    
+		stage('Run container with web-app') {
+			steps {
+				sh "docker run -itd -p '8090:8080' --name 'container_${env.BUILD_ID}' 'image:build_${env.BUILD_ID}'"
+	}
 }
-	post { 
-        always {
-		sh "docker rmi $registry:build_${env.BUILD_ID}"
-		sh "docker rmi -f 'registry.hub.docker.com/naidadv/courses_homework2:build_${env.BUILD_ID}'"
-		cleanWs()
+		stage('Test web-app') {
+			steps {
+				sh "curl localhost:8090"
 		}
-	}*/
+	}            
+}
+	post('Cleaning workspace') { 
+        always {
+			sh "docker stop 'container_${env.BUILD_ID}' && docker rm 'container_${env.BUILD_ID}'"
+			sh "docker rmi -f 'image:build_${env.BUILD_ID}'"
+			cleanWs()
+			}
+		}
 	}
 }

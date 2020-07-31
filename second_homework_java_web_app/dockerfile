@@ -3,6 +3,6 @@ FROM ubuntu:18.04
 # Information about me
 MAINTAINER denys naida <NaidaDV@nmu.one>
 # Updating and upgrading 
-RUN apt-get update && apt-get upgrade -y && apt-get install maven -y && apt-get install openjdk-11-jdk -y
-RUN mvn package -f /project/springbootwebapp-master/pom.xml
-ENTRYPOINT java -jar /project/springbootwebapp-master/target/spring-boot-web-0.0.1-SNAPSHOT.jar
+RUN apt-get update && apt-get upgrade -y && apt-get install maven -y && apt-get install openjdk-8-jdk -y
+COPY ./springbootwebapp/target/spring-boot-web-0.0.1-SNAPSHOT.jar /poject/spring-boot-web-0.0.1-SNAPSHOT.jar
+ENTRYPOINT java -jar /project/spring-boot-web-0.0.1-SNAPSHOT.jar
