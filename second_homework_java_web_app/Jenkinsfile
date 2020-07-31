@@ -1,9 +1,9 @@
 pipeline {
     
 	agent {
-	node {
+	/*node {
         label 'master'
-	}
+	}*/
 	tools { 
         maven 'maven 3.6.3' 
         jdk 'jdk8' 
