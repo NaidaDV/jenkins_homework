@@ -9,10 +9,12 @@ pipeline {
                 
     stage('Check maven') {
         steps {
-            sh "if [ \$(dpkg-query -W -f='${Status}' maven 2>/dev/null | grep -c "ok installed") -eq 0 ];
+            sh ```
+		if [ \$(dpkg-query -W -f='${Status}' maven 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
   apt-get install maven;
-fi"
+fi
+		```
 	}
 }
                     
