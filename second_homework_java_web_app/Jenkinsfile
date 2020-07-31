@@ -1,10 +1,10 @@
 pipeline {
     
-	agent {
+	agent any /*{
 	node {
         label 'slave_homework'
 	}
-}
+}*/
             stages {
                 
     stage('Check maven') {
