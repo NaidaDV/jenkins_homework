@@ -18,7 +18,7 @@ pipeline {
 }
 		stage('Compiling web-app') {
 			steps {
-				sh "mvn package -f './second_homework_java_web_app/springbootwebapp/pom.xml'"
+				sh "mvn package -f 'second_homework_java_web_app/springbootwebapp/pom.xml'"
 	}
 }
 		stage('Build container') {
