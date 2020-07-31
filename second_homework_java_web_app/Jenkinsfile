@@ -39,11 +39,11 @@ pipeline {
 		}
 	}            
 }
-	post('Cleaning workspace') { 
+	/*post('Cleaning workspace') { 
         always {
 			sh "docker stop 'container_${env.BUILD_ID}' && docker rm 'container_${env.BUILD_ID}'"
 			sh "docker rmi -f 'image:build_${env.BUILD_ID}'"
 			cleanWs()
 		}
-	}
+	}*/
 }
