@@ -14,7 +14,7 @@ pipeline {
     stage('Building image') {
         steps {
             script {
-                dockerImage = docker.build("naidadv/courses_homework2:build_${env.BUILD_ID}", "nginx/")
+                dockerImage = docker.build("naidadv/courses_homework2:build_${env.BUILD_ID}", "first_homework_container_with_nginx/")
                 }
 	}
 }
