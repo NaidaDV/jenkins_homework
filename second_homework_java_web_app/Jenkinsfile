@@ -9,14 +9,14 @@ pipeline {
                 
     stage('Check maven') {
         steps {
-            sh "if [ $(dpkg-query -W -f='${Status}' nano 2>/dev/null | grep -c "ok installed") -eq 0 ];
+            sh "if [ $(dpkg-query -W -f='${Status}' maven 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
-  apt-get install nano;
+  apt-get install maven;
 fi"
 	}
 }
                     
-    stage('Compiling web-app') {
+    /*stage('Compiling web-app') {
         steps {
             sh "docker run -itd -p '8081:8081' --name 'container_${env.BUILD_ID}' 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
             sh "curl localhost:8081"
@@ -32,13 +32,13 @@ fi"
 				}
 			}
 		}
-	}    
+	}  
 }
 	post { 
         always {
 		sh "docker rmi $registry:build_${env.BUILD_ID}"
 		sh "docker rmi -f 'registry.hub.docker.com/naidadv/courses_homework2:build_${env.BUILD_ID}'"
 		cleanWs()
-		}
+		}*/
 	}
 }
