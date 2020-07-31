@@ -1,14 +1,14 @@
 pipeline {
     
-	agent {
-	/*node {
+	agent none {
+	node {
         label 'master'
-	}*/
+	}
+	}
 	tools { 
         maven 'maven 3.6.3' 
         jdk 'jdk8' 
     }
-}
             stages {
                 
     stage('Check maven') {
