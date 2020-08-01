@@ -103,7 +103,7 @@ pipeline {
 # Workflow
 I have added my git repo and jenkinsfile pass to job settings:
 
-![](\first_homework_container_with_nginx\screenshots\1.png)
+![](jenkins_homework/first_homework_container_with_nginx/screenshots/1.png)
 
 There are 3 scripted stages and 2 declarative (Checkot SCM and Post actions):
 
