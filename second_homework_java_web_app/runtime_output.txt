@@ -1,0 +1,1507 @@
+Started by user Denys Naida
+Obtained second_homework_java_web_app/Jenkinsfile from git https://github.com/NaidaDV/jenkins_homework.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Slave for Homeworcs in /var/lib/jenkins/remoteslave/workspace/web-app-pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+No credentials specified
+Fetching changes from the remote Git repository
+ > git rev-parse --is-inside-work-tree # timeout=10
+ > git config remote.origin.url https://github.com/NaidaDV/jenkins_homework.git # timeout=10
+Fetching upstream changes from https://github.com/NaidaDV/jenkins_homework.git
+ > git --version # timeout=10
+ > git fetch --tags --force --progress -- https://github.com/NaidaDV/jenkins_homework.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision 510d41ee884261124a897f43da601736d909b4f0 (refs/remotes/origin/master)
+Commit message: "Update readme.md"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Check jdk and maven)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 510d41ee884261124a897f43da601736d909b4f0 # timeout=10
++ java -version
+openjdk version "11.0.8" 2020-07-14
+OpenJDK Runtime Environment (build 11.0.8+10-post-Ubuntu-0ubuntu120.04)
+OpenJDK 64-Bit Server VM (build 11.0.8+10-post-Ubuntu-0ubuntu120.04, mixed mode, sharing)
+[Pipeline] sh
++ mvn -v
+Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)
+Maven home: /var/lib/jenkins/remoteslave/tools/hudson.tasks.Maven_MavenInstallation/maven_3.6.3
+Java version: 11.0.8, vendor: Ubuntu, runtime: /usr/lib/jvm/java-11-openjdk-amd64
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "5.4.0-42-generic", arch: "amd64", family: "unix"
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Compiling web-app)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ mvn package -f second_homework_java_web_app/springbootwebapp/pom.xml
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< guru.springframework:spring-boot-web >----------------
+[INFO] Building Spring Boot Web Application 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ spring-boot-web ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 9 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ spring-boot-web ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ spring-boot-web ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/remoteslave/workspace/web-app-pipeline/second_homework_java_web_app/springbootwebapp/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ spring-boot-web ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ spring-boot-web ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+19:55:53.534 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class guru.springframework.repositories.ProductRepositoryTest]
+19:55:53.555 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+19:55:53.580 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+19:55:53.640 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [guru.springframework.repositories.ProductRepositoryTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+19:55:53.664 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [guru.springframework.repositories.ProductRepositoryTest], using SpringBootContextLoader
+19:55:53.669 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [guru.springframework.repositories.ProductRepositoryTest]: class path resource [guru/springframework/repositories/ProductRepositoryTest-context.xml] does not exist
+19:55:53.670 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [guru.springframework.repositories.ProductRepositoryTest]: class path resource [guru/springframework/repositories/ProductRepositoryTestContext.groovy] does not exist
+19:55:53.671 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [guru.springframework.repositories.ProductRepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+19:55:53.745 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:53.958 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [guru.springframework.repositories.ProductRepositoryTest]: using defaults.
+19:55:53.959 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+19:55:53.990 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@33ecda92, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@14fc5f04, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6e2829c7, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3feb2dda, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6a8658ff, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1c742ed4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@333d4a8c, org.springframework.test.context.event.EventPublishingTestExecutionListener@55de24cc, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@dc7df28, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@30f842ca, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@69c81773, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@4d14b6c2, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7e990ed7]
+19:55:53.999 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.008 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.091 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class guru.springframework.SpringBootWebApplicationTests]
+19:55:54.091 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+19:55:54.092 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+19:55:54.093 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [guru.springframework.SpringBootWebApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+19:55:54.094 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [guru.springframework.SpringBootWebApplicationTests], using SpringBootContextLoader
+19:55:54.095 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [guru.springframework.SpringBootWebApplicationTests]: class path resource [guru/springframework/SpringBootWebApplicationTests-context.xml] does not exist
+19:55:54.095 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [guru.springframework.SpringBootWebApplicationTests]: class path resource [guru/springframework/SpringBootWebApplicationTestsContext.groovy] does not exist
+19:55:54.096 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [guru.springframework.SpringBootWebApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+19:55:54.108 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [guru.springframework.SpringBootWebApplicationTests]
+19:55:54.149 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [guru.springframework.SpringBootWebApplicationTests]: using defaults.
+19:55:54.153 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+19:55:54.154 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@79defdc, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@18317edc, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4e0ae11f, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@238d68ff, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4b86805d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5852c06f, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4149c063, org.springframework.test.context.event.EventPublishingTestExecutionListener@9cb8225, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@76b07f29, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@38af9828, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@376a0d86, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@62656be4, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@17d919b6]
+19:55:54.155 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [guru.springframework.SpringBootWebApplicationTests]
+19:55:54.155 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [guru.springframework.SpringBootWebApplicationTests]
+19:55:54.166 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.166 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+19:55:54.167 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+19:55:54.170 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [guru.springframework.repositories.ProductRepositoryTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+19:55:54.171 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [guru.springframework.repositories.ProductRepositoryTest], using SpringBootContextLoader
+19:55:54.175 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [guru.springframework.repositories.ProductRepositoryTest]: class path resource [guru/springframework/repositories/ProductRepositoryTest-context.xml] does not exist
+19:55:54.175 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [guru.springframework.repositories.ProductRepositoryTest]: class path resource [guru/springframework/repositories/ProductRepositoryTestContext.groovy] does not exist
+19:55:54.176 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [guru.springframework.repositories.ProductRepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+19:55:54.182 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.190 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [guru.springframework.repositories.ProductRepositoryTest]: using defaults.
+19:55:54.190 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+19:55:54.191 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4c5ae43b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@264f218, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3576ddc2, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@35b74c5c, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2e570ded, org.springframework.test.context.transaction.TransactionalTestExecutionListener@b86de0d, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@81d9a72, org.springframework.test.context.event.EventPublishingTestExecutionListener@747f281, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1169afe1, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2ca26d77, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4808bc9b, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@70e38ce1, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@2ca923bb]
+19:55:54.192 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.201 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.205 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class guru.springframework.SpringBootWebApplicationTests]
+19:55:54.205 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+19:55:54.205 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+19:55:54.208 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [guru.springframework.SpringBootWebApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+19:55:54.211 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [guru.springframework.SpringBootWebApplicationTests], using SpringBootContextLoader
+19:55:54.213 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [guru.springframework.SpringBootWebApplicationTests]: class path resource [guru/springframework/SpringBootWebApplicationTests-context.xml] does not exist
+19:55:54.213 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [guru.springframework.SpringBootWebApplicationTests]: class path resource [guru/springframework/SpringBootWebApplicationTestsContext.groovy] does not exist
+19:55:54.214 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [guru.springframework.SpringBootWebApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+19:55:54.224 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [guru.springframework.SpringBootWebApplicationTests]
+19:55:54.232 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [guru.springframework.SpringBootWebApplicationTests]: using defaults.
+19:55:54.232 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+19:55:54.243 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@72d6b3ba, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1787f2a0, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7de62196, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@163370c2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@51bf5add, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7905a0b8, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@35a3d49f, org.springframework.test.context.event.EventPublishingTestExecutionListener@389b0789, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@13d9cbf5, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@478db956, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6ca18a14, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@c667f46, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@51bd8b5c]
+19:55:54.244 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [guru.springframework.SpringBootWebApplicationTests]
+19:55:54.244 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [guru.springframework.SpringBootWebApplicationTests]
+19:55:54.344 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.345 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [guru.springframework.repositories.ProductRepositoryTest]
+[INFO] Running guru.springframework.repositories.ProductRepositoryTest
+19:55:54.348 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.348 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.349 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.349 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.353 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@60b4beb4 testClass = ProductRepositoryTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@7fcf2fc1 testClass = ProductRepositoryTest, locations = '{}', classes = '{class guru.springframework.configuration.RepositoryConfiguration, class guru.springframework.configuration.RepositoryConfiguration}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@206a70ef, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@36ebc363, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6989da5e, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@40005471], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+19:55:54.355 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.356 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [guru.springframework.repositories.ProductRepositoryTest]
+19:55:54.401 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.2.RELEASE)
+
+2020-08-01 19:55:55.127  INFO 78408 --- [           main] g.s.repositories.ProductRepositoryTest   : Starting ProductRepositoryTest on denys-VirtualBox with PID 78408 (started by jenkins in /var/lib/jenkins/remoteslave/workspace/web-app-pipeline/second_homework_java_web_app/springbootwebapp)
+2020-08-01 19:55:55.139  INFO 78408 --- [           main] g.s.repositories.ProductRepositoryTest   : No active profile set, falling back to default profiles: default
+2020-08-01 19:55:56.125  INFO 78408 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-08-01 19:55:56.185  INFO 78408 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50ms. Found 1 JPA repository interfaces.
+2020-08-01 19:55:56.996  INFO 78408 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-01 19:55:57.433  INFO 78408 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-08-01 19:55:57.508  INFO 78408 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.9.Final}
+2020-08-01 19:55:57.668  INFO 78408 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-08-01 19:55:57.829  INFO 78408 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-08-01 19:55:58.077  INFO 78408 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-08-01 19:55:58.102  INFO 78408 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-08-01 19:55:58.893  INFO 78408 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-08-01 19:55:58.907  INFO 78408 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-08-01 19:55:59.499  WARN 78408 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-08-01 19:55:59.898  INFO 78408 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-01 19:56:00.082  INFO 78408 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-08-01 19:56:00.489  INFO 78408 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 5206e512-c6db-4b18-b12e-6accc7caf46c
+
+2020-08-01 19:56:00.703  INFO 78408 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6cb3463b, org.springframework.security.web.context.SecurityContextPersistenceFilter@4be3de36, org.springframework.security.web.header.HeaderWriterFilter@41d53813, org.springframework.security.web.csrf.CsrfFilter@3c1df0e9, org.springframework.security.web.authentication.logout.LogoutFilter@65bb4cb9, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1e18876d, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2e09e367, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@2f9236d8, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@e1c91cd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e836aed, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@43a8bd35, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4536a09a, org.springframework.security.web.session.SessionManagementFilter@3294102e, org.springframework.security.web.access.ExceptionTranslationFilter@452e2210, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@548f4f60]
+2020-08-01 19:56:00.823  INFO 78408 --- [           main] g.s.repositories.ProductRepositoryTest   : Started ProductRepositoryTest in 6.41 seconds (JVM running for 8.425)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.958 s - in guru.springframework.repositories.ProductRepositoryTest
+[INFO] Running guru.springframework.SpringBootWebApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.2.RELEASE)
+
+2020-08-01 19:56:01.419  INFO 78408 --- [           main] g.s.SpringBootWebApplicationTests        : Starting SpringBootWebApplicationTests on denys-VirtualBox with PID 78408 (started by jenkins in /var/lib/jenkins/remoteslave/workspace/web-app-pipeline/second_homework_java_web_app/springbootwebapp)
+2020-08-01 19:56:01.419  INFO 78408 --- [           main] g.s.SpringBootWebApplicationTests        : No active profile set, falling back to default profiles: default
+2020-08-01 19:56:01.623  INFO 78408 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-08-01 19:56:01.628  INFO 78408 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4ms. Found 1 JPA repository interfaces.
+2020-08-01 19:56:01.768  INFO 78408 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-01 19:56:01.854  INFO 78408 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-08-01 19:56:01.859  INFO 78408 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2020-08-01 19:56:01.861  INFO 78408 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2020-08-01 19:56:01.864  INFO 78408 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-08-01 19:56:01.903  INFO 78408 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-08-01 19:56:01.904  INFO 78408 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-08-01 19:56:02.007  WARN 78408 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-08-01 19:56:02.281  INFO 78408 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-01 19:56:02.331  INFO 78408 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-08-01 19:56:02.581  INFO 78408 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: d25773c6-52fb-4074-bd72-d422d51534f9
+
+2020-08-01 19:56:02.656  INFO 78408 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c9c7e7d, org.springframework.security.web.context.SecurityContextPersistenceFilter@20e7152a, org.springframework.security.web.header.HeaderWriterFilter@1c80f8dd, org.springframework.security.web.authentication.logout.LogoutFilter@674d2b8b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@202fd4c4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3b72860c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@58701e8c, org.springframework.security.web.session.SessionManagementFilter@51b2b3e6, org.springframework.security.web.access.ExceptionTranslationFilter@3f67f5ff, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@550e7ef6]
+2020-08-01 19:56:02.729  INFO 78408 --- [           main] g.s.bootstrap.ProductLoader              : Saved Shirt - id: 1
+2020-08-01 19:56:02.734  INFO 78408 --- [           main] g.s.bootstrap.ProductLoader              : Saved Mug - id:2
+2020-08-01 19:56:02.738  INFO 78408 --- [           main] g.s.SpringBootWebApplicationTests        : Started SpringBootWebApplicationTests in 1.412 seconds (JVM running for 10.34)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.327 s - in guru.springframework.SpringBootWebApplicationTests
+2020-08-01 19:56:02.777  INFO 78408 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-08-01 19:56:02.779  INFO 78408 --- [extShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-08-01 19:56:02.791  INFO 78408 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-08-01 19:56:02.795  INFO 78408 --- [extShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-08-01 19:56:02.796  INFO 78408 --- [extShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2020-08-01 19:56:02.794  INFO 78408 --- [extShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2020-08-01 19:56:02.812  INFO 78408 --- [extShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2020-08-01 19:56:02.813  INFO 78408 --- [extShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-08-01 19:56:02.834  INFO 78408 --- [extShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-08-01 19:56:02.833  INFO 78408 --- [extShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ spring-boot-web ---
+[INFO] Building jar: /var/lib/jenkins/remoteslave/workspace/web-app-pipeline/second_homework_java_web_app/springbootwebapp/target/spring-boot-web-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.2.2.RELEASE:repackage (repackage) @ spring-boot-web ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  15.749 s
+[INFO] Finished at: 2020-08-01T19:56:04+03:00
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Building images)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker build -t image:build_1 second_homework_java_web_app/
+Sending build context to Docker daemon  47.41MB
+
+Step 1/5 : FROM ubuntu:18.04
+ ---> d27b9ffc5667
+Step 2/5 : MAINTAINER denys naida <NaidaDV@nmu.one>
+ ---> Running in eceaacfc5703
+Removing intermediate container eceaacfc5703
+ ---> 3f440dd3bdb6
+Step 3/5 : RUN apt-get update && apt-get upgrade -y && apt-get install openjdk-11-jdk -y
+ ---> Running in b546acd15a1e
+Get:1 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
+Get:2 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Get:3 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+Get:4 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [880 kB]
+Get:5 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic/multiverse amd64 Packages [186 kB]
+Get:7 http://archive.ubuntu.com/ubuntu bionic/main amd64 Packages [1344 kB]
+Get:8 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [100 kB]
+Get:9 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [1033 kB]
+Get:10 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [9555 B]
+Get:11 http://archive.ubuntu.com/ubuntu bionic/universe amd64 Packages [11.3 MB]
+Get:12 http://archive.ubuntu.com/ubuntu bionic/restricted amd64 Packages [13.5 kB]
+Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 Packages [27.1 kB]
+Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1413 kB]
+Get:15 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [1334 kB]
+Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/restricted amd64 Packages [116 kB]
+Get:17 http://archive.ubuntu.com/ubuntu bionic-backports/main amd64 Packages [8286 B]
+Get:18 http://archive.ubuntu.com/ubuntu bionic-backports/universe amd64 Packages [8432 B]
+Fetched 18.3 MB in 6s (3161 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+The following packages will be upgraded:
+  libc-bin libc6 libgnutls30 libseccomp2
+4 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Need to get 4151 kB of archives.
+After this operation, 4096 B of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libc6 amd64 2.27-3ubuntu1.2 [2827 kB]
+Get:2 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libc-bin amd64 2.27-3ubuntu1.2 [637 kB]
+Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgnutls30 amd64 3.5.18-1ubuntu1.4 [645 kB]
+Get:4 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libseccomp2 amd64 2.4.3-1ubuntu3.18.04.3 [42.0 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 4151 kB in 1s (3515 kB/s)
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 4046 files and directories currently installed.)
+Preparing to unpack .../libc6_2.27-3ubuntu1.2_amd64.deb ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Unpacking libc6:amd64 (2.27-3ubuntu1.2) over (2.27-3ubuntu1) ...
+Setting up libc6:amd64 (2.27-3ubuntu1.2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 4046 files and directories currently installed.)
+Preparing to unpack .../libc-bin_2.27-3ubuntu1.2_amd64.deb ...
+Unpacking libc-bin (2.27-3ubuntu1.2) over (2.27-3ubuntu1) ...
+Setting up libc-bin (2.27-3ubuntu1.2) ...
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 4046 files and directories currently installed.)
+Preparing to unpack .../libgnutls30_3.5.18-1ubuntu1.4_amd64.deb ...
+Unpacking libgnutls30:amd64 (3.5.18-1ubuntu1.4) over (3.5.18-1ubuntu1.3) ...
+Setting up libgnutls30:amd64 (3.5.18-1ubuntu1.4) ...
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 4046 files and directories currently installed.)
+Preparing to unpack .../libseccomp2_2.4.3-1ubuntu3.18.04.3_amd64.deb ...
+Unpacking libseccomp2:amd64 (2.4.3-1ubuntu3.18.04.3) over (2.4.3-1ubuntu3.18.04.2) ...
+Setting up libseccomp2:amd64 (2.4.3-1ubuntu3.18.04.3) ...
+Processing triggers for libc-bin (2.27-3ubuntu1.2) ...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  at-spi2-core ca-certificates ca-certificates-java dbus fontconfig-config
+  fonts-dejavu-core fonts-dejavu-extra java-common krb5-locales libapparmor1
+  libasound2 libasound2-data libatk-bridge2.0-0 libatk-wrapper-java
+  libatk-wrapper-java-jni libatk1.0-0 libatk1.0-data libatspi2.0-0
+  libavahi-client3 libavahi-common-data libavahi-common3 libbsd0 libcups2
+  libdbus-1-3 libdrm-amdgpu1 libdrm-common libdrm-intel1 libdrm-nouveau2
+  libdrm-radeon1 libdrm2 libedit2 libelf1 libexpat1 libfontconfig1 libfontenc1
+  libfreetype6 libgif7 libgl1 libgl1-mesa-dri libglapi-mesa libglib2.0-0
+  libglib2.0-data libglvnd0 libglx-mesa0 libglx0 libgssapi-krb5-2 libice-dev
+  libice6 libicu60 libjpeg-turbo8 libjpeg8 libk5crypto3 libkeyutils1 libkrb5-3
+  libkrb5support0 liblcms2-2 libllvm10 libnspr4 libnss3 libpciaccess0
+  libpcsclite1 libpng16-16 libpthread-stubs0-dev libsensors4 libsm-dev libsm6
+  libsqlite3-0 libssl1.1 libx11-6 libx11-data libx11-dev libx11-doc
+  libx11-xcb1 libxau-dev libxau6 libxaw7 libxcb-dri2-0 libxcb-dri3-0
+  libxcb-glx0 libxcb-present0 libxcb-shape0 libxcb-sync1 libxcb1 libxcb1-dev
+  libxcomposite1 libxdamage1 libxdmcp-dev libxdmcp6 libxext6 libxfixes3
+  libxft2 libxi6 libxinerama1 libxml2 libxmu6 libxmuu1 libxpm4 libxrandr2
+  libxrender1 libxshmfence1 libxt-dev libxt6 libxtst6 libxv1 libxxf86dga1
+  libxxf86vm1 multiarch-support openjdk-11-jdk-headless openjdk-11-jre
+  openjdk-11-jre-headless openssl shared-mime-info ucf x11-common x11-utils
+  x11proto-core-dev x11proto-dev xdg-user-dirs xorg-sgml-doctools xtrans-dev
+Suggested packages:
+  default-dbus-session-bus | dbus-session-bus default-jre libasound2-plugins
+  alsa-utils cups-common krb5-doc krb5-user libice-doc liblcms2-utils pciutils
+  pcscd lm-sensors libsm-doc libxcb-doc libxt-doc openjdk-11-demo
+  openjdk-11-source visualvm libnss-mdns fonts-ipafont-gothic
+  fonts-ipafont-mincho fonts-wqy-microhei | fonts-wqy-zenhei fonts-indic
+  mesa-utils
+The following NEW packages will be installed:
+  at-spi2-core ca-certificates ca-certificates-java dbus fontconfig-config
+  fonts-dejavu-core fonts-dejavu-extra java-common krb5-locales libapparmor1
+  libasound2 libasound2-data libatk-bridge2.0-0 libatk-wrapper-java
+  libatk-wrapper-java-jni libatk1.0-0 libatk1.0-data libatspi2.0-0
+  libavahi-client3 libavahi-common-data libavahi-common3 libbsd0 libcups2
+  libdbus-1-3 libdrm-amdgpu1 libdrm-common libdrm-intel1 libdrm-nouveau2
+  libdrm-radeon1 libdrm2 libedit2 libelf1 libexpat1 libfontconfig1 libfontenc1
+  libfreetype6 libgif7 libgl1 libgl1-mesa-dri libglapi-mesa libglib2.0-0
+  libglib2.0-data libglvnd0 libglx-mesa0 libglx0 libgssapi-krb5-2 libice-dev
+  libice6 libicu60 libjpeg-turbo8 libjpeg8 libk5crypto3 libkeyutils1 libkrb5-3
+  libkrb5support0 liblcms2-2 libllvm10 libnspr4 libnss3 libpciaccess0
+  libpcsclite1 libpng16-16 libpthread-stubs0-dev libsensors4 libsm-dev libsm6
+  libsqlite3-0 libssl1.1 libx11-6 libx11-data libx11-dev libx11-doc
+  libx11-xcb1 libxau-dev libxau6 libxaw7 libxcb-dri2-0 libxcb-dri3-0
+  libxcb-glx0 libxcb-present0 libxcb-shape0 libxcb-sync1 libxcb1 libxcb1-dev
+  libxcomposite1 libxdamage1 libxdmcp-dev libxdmcp6 libxext6 libxfixes3
+  libxft2 libxi6 libxinerama1 libxml2 libxmu6 libxmuu1 libxpm4 libxrandr2
+  libxrender1 libxshmfence1 libxt-dev libxt6 libxtst6 libxv1 libxxf86dga1
+  libxxf86vm1 multiarch-support openjdk-11-jdk openjdk-11-jdk-headless
+  openjdk-11-jre openjdk-11-jre-headless openssl shared-mime-info ucf
+  x11-common x11-utils x11proto-core-dev x11proto-dev xdg-user-dirs
+  xorg-sgml-doctools xtrans-dev
+0 upgraded, 121 newly installed, 0 to remove and 0 not upgraded.
+Need to get 284 MB of archives.
+After this operation, 801 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 multiarch-support amd64 2.27-3ubuntu1.2 [6920 B]
+Get:2 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxau6 amd64 1:1.0.8-1ubuntu1 [7556 B]
+Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libbsd0 amd64 0.8.7-1ubuntu0.1 [41.6 kB]
+Get:4 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxdmcp6 amd64 1:1.1.2-3 [10.7 kB]
+Get:5 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb1 amd64 1.13-2~ubuntu18.04 [45.5 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libx11-data all 2:1.6.4-3ubuntu0.2 [113 kB]
+Get:7 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libx11-6 amd64 2:1.6.4-3ubuntu0.2 [569 kB]
+Get:8 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxext6 amd64 2:1.3.3-1 [29.4 kB]
+Get:9 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libjpeg-turbo8 amd64 1.5.2-0ubuntu5.18.04.4 [110 kB]
+Get:10 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 x11-common all 1:7.7+19ubuntu7.1 [22.5 kB]
+Get:11 http://archive.ubuntu.com/ubuntu bionic/main amd64 libice6 amd64 2:1.0.9-2 [40.2 kB]
+Get:12 http://archive.ubuntu.com/ubuntu bionic/main amd64 libsm6 amd64 2:1.2.2-1 [15.8 kB]
+Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libexpat1 amd64 2.2.5-3ubuntu0.2 [80.5 kB]
+Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpng16-16 amd64 1.6.34-1ubuntu0.18.04.2 [176 kB]
+Get:15 http://archive.ubuntu.com/ubuntu bionic/main amd64 libfreetype6 amd64 2.8.1-2ubuntu2 [335 kB]
+Get:16 http://archive.ubuntu.com/ubuntu bionic/main amd64 ucf all 3.0038 [50.5 kB]
+Get:17 http://archive.ubuntu.com/ubuntu bionic/main amd64 fonts-dejavu-core all 2.37-1 [1041 kB]
+Get:18 http://archive.ubuntu.com/ubuntu bionic/main amd64 fontconfig-config all 2.12.6-0ubuntu2 [55.8 kB]
+Get:19 http://archive.ubuntu.com/ubuntu bionic/main amd64 libfontconfig1 amd64 2.12.6-0ubuntu2 [137 kB]
+Get:20 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxrender1 amd64 1:0.9.10-1 [18.7 kB]
+Get:21 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxft2 amd64 2.3.2-1 [36.1 kB]
+Get:22 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxinerama1 amd64 2:1.1.3-1 [7908 B]
+Get:23 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxxf86dga1 amd64 2:1.1.4-1 [13.7 kB]
+Get:24 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxxf86vm1 amd64 1:1.1.4-1 [10.6 kB]
+Get:25 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libssl1.1 amd64 1.1.1-1ubuntu2.1~18.04.6 [1301 kB]
+Get:26 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openssl amd64 1.1.1-1ubuntu2.1~18.04.6 [614 kB]
+Get:27 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 ca-certificates all 20190110~18.04.1 [146 kB]
+Get:28 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libapparmor1 amd64 2.12-4ubuntu5.1 [31.3 kB]
+Get:29 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdbus-1-3 amd64 1.12.2-1ubuntu1.2 [175 kB]
+Get:30 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 dbus amd64 1.12.2-1ubuntu1.2 [150 kB]
+Get:31 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libelf1 amd64 0.170-0.4ubuntu0.1 [44.8 kB]
+Get:32 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglib2.0-0 amd64 2.56.4-0ubuntu0.18.04.6 [1171 kB]
+Get:33 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglib2.0-data all 2.56.4-0ubuntu0.18.04.6 [4540 B]
+Get:34 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libicu60 amd64 60.2-3ubuntu3.1 [8054 kB]
+Get:35 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libsqlite3-0 amd64 3.22.0-1ubuntu0.4 [499 kB]
+Get:36 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxml2 amd64 2.9.4+dfsg1-6.1ubuntu1.3 [663 kB]
+Get:37 http://archive.ubuntu.com/ubuntu bionic/main amd64 shared-mime-info amd64 1.9-2 [426 kB]
+Get:38 http://archive.ubuntu.com/ubuntu bionic/main amd64 xdg-user-dirs amd64 0.17-1ubuntu1 [48.0 kB]
+Get:39 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 krb5-locales all 1.16-2ubuntu0.1 [13.5 kB]
+Get:40 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm-common all 2.4.101-2~18.04.1 [5560 B]
+Get:41 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm2 amd64 2.4.101-2~18.04.1 [32.3 kB]
+Get:42 http://archive.ubuntu.com/ubuntu bionic/main amd64 libedit2 amd64 3.1-20170329-1 [76.9 kB]
+Get:43 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libkrb5support0 amd64 1.16-2ubuntu0.1 [30.9 kB]
+Get:44 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libk5crypto3 amd64 1.16-2ubuntu0.1 [85.6 kB]
+Get:45 http://archive.ubuntu.com/ubuntu bionic/main amd64 libkeyutils1 amd64 1.5.9-9.2ubuntu2 [8720 B]
+Get:46 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libkrb5-3 amd64 1.16-2ubuntu0.1 [279 kB]
+Get:47 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgssapi-krb5-2 amd64 1.16-2ubuntu0.1 [122 kB]
+Get:48 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxmuu1 amd64 2:1.1.2-2 [9674 B]
+Get:49 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatspi2.0-0 amd64 2.28.0-1 [59.6 kB]
+Get:50 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxtst6 amd64 2:1.2.3-1 [12.8 kB]
+Get:51 http://archive.ubuntu.com/ubuntu bionic/main amd64 at-spi2-core amd64 2.28.0-1 [47.9 kB]
+Get:52 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 java-common all 0.68ubuntu1~18.04.1 [14.5 kB]
+Get:53 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libavahi-common-data amd64 0.7-3.1ubuntu1.2 [22.1 kB]
+Get:54 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libavahi-common3 amd64 0.7-3.1ubuntu1.2 [21.6 kB]
+Get:55 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libavahi-client3 amd64 0.7-3.1ubuntu1.2 [25.2 kB]
+Get:56 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcups2 amd64 2.2.7-1ubuntu2.8 [211 kB]
+Get:57 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 liblcms2-2 amd64 2.9-1ubuntu0.1 [139 kB]
+Get:58 http://archive.ubuntu.com/ubuntu bionic/main amd64 libjpeg8 amd64 8c-2ubuntu8 [2194 B]
+Get:59 http://archive.ubuntu.com/ubuntu bionic/main amd64 libnspr4 amd64 2:4.18-1ubuntu1 [112 kB]
+Get:60 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnss3 amd64 2:3.35-2ubuntu2.9 [1138 kB]
+Get:61 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libasound2-data all 1.1.3-5ubuntu0.5 [38.7 kB]
+Get:62 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libasound2 amd64 1.1.3-5ubuntu0.5 [360 kB]
+Get:63 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpcsclite1 amd64 1.8.23-1 [21.3 kB]
+Get:64 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxi6 amd64 2:1.7.9-1 [29.2 kB]
+Get:65 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openjdk-11-jre-headless amd64 11.0.8+10-0ubuntu1~18.04.1 [37.6 MB]
+Get:66 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 ca-certificates-java all 20180516ubuntu1~18.04.1 [12.2 kB]
+Get:67 http://archive.ubuntu.com/ubuntu bionic/main amd64 fonts-dejavu-extra all 2.37-1 [1953 kB]
+Get:68 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatk1.0-data all 2.28.1-1 [2992 B]
+Get:69 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatk1.0-0 amd64 2.28.1-1 [43.9 kB]
+Get:70 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatk-bridge2.0-0 amd64 2.26.2-1 [57.3 kB]
+Get:71 http://archive.ubuntu.com/ubuntu bionic/main amd64 libfontenc1 amd64 1:1.1.3-1 [13.9 kB]
+Get:72 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglvnd0 amd64 1.0.0-2ubuntu2.3 [47.0 kB]
+Get:73 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglapi-mesa amd64 20.0.8-0ubuntu1~18.04.1 [26.6 kB]
+Get:74 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libx11-xcb1 amd64 2:1.6.4-3ubuntu0.2 [9376 B]
+Get:75 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-dri2-0 amd64 1.13-2~ubuntu18.04 [6920 B]
+Get:76 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-dri3-0 amd64 1.13-2~ubuntu18.04 [6568 B]
+Get:77 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-glx0 amd64 1.13-2~ubuntu18.04 [22.1 kB]
+Get:78 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-present0 amd64 1.13-2~ubuntu18.04 [5552 B]
+Get:79 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-sync1 amd64 1.13-2~ubuntu18.04 [8808 B]
+Get:80 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxdamage1 amd64 1:1.1.4-3 [6934 B]
+Get:81 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxfixes3 amd64 1:5.0.3-1 [10.8 kB]
+Get:82 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxshmfence1 amd64 1.3-1 [5028 B]
+Get:83 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm-amdgpu1 amd64 2.4.101-2~18.04.1 [18.2 kB]
+Get:84 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpciaccess0 amd64 0.14-1 [17.9 kB]
+Get:85 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm-intel1 amd64 2.4.101-2~18.04.1 [60.0 kB]
+Get:86 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm-nouveau2 amd64 2.4.101-2~18.04.1 [16.5 kB]
+Get:87 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdrm-radeon1 amd64 2.4.101-2~18.04.1 [21.7 kB]
+Get:88 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libllvm10 amd64 1:10.0.0-4ubuntu1~18.04.2 [15.4 MB]
+Get:89 http://archive.ubuntu.com/ubuntu bionic/main amd64 libsensors4 amd64 1:3.4.0-4 [28.8 kB]
+Get:90 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgl1-mesa-dri amd64 20.0.8-0ubuntu1~18.04.1 [9333 kB]
+Get:91 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglx-mesa0 amd64 20.0.8-0ubuntu1~18.04.1 [139 kB]
+Get:92 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libglx0 amd64 1.0.0-2ubuntu2.3 [28.1 kB]
+Get:93 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgl1 amd64 1.0.0-2ubuntu2.3 [86.2 kB]
+Get:94 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxt6 amd64 1:1.1.5-1 [160 kB]
+Get:95 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxmu6 amd64 2:1.1.2-2 [46.0 kB]
+Get:96 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxpm4 amd64 1:3.5.12-1 [34.0 kB]
+Get:97 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxaw7 amd64 2:1.0.13-1 [173 kB]
+Get:98 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-shape0 amd64 1.13-2~ubuntu18.04 [5972 B]
+Get:99 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxcomposite1 amd64 1:0.4.4-2 [6988 B]
+Get:100 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxrandr2 amd64 2:1.5.1-1 [18.1 kB]
+Get:101 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxv1 amd64 2:1.0.11-1 [10.7 kB]
+Get:102 http://archive.ubuntu.com/ubuntu bionic/main amd64 x11-utils amd64 7.7+3build1 [196 kB]
+Get:103 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatk-wrapper-java all 0.33.3-20ubuntu0.1 [34.7 kB]
+Get:104 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatk-wrapper-java-jni amd64 0.33.3-20ubuntu0.1 [28.3 kB]
+Get:105 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgif7 amd64 5.1.4-2ubuntu0.1 [30.9 kB]
+Get:106 http://archive.ubuntu.com/ubuntu bionic/main amd64 xorg-sgml-doctools all 1:1.11-1 [12.9 kB]
+Get:107 http://archive.ubuntu.com/ubuntu bionic/main amd64 x11proto-dev all 2018.4-4 [251 kB]
+Get:108 http://archive.ubuntu.com/ubuntu bionic/main amd64 x11proto-core-dev all 2018.4-4 [2620 B]
+Get:109 http://archive.ubuntu.com/ubuntu bionic/main amd64 libice-dev amd64 2:1.0.9-2 [46.8 kB]
+Get:110 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpthread-stubs0-dev amd64 0.3-4 [4068 B]
+Get:111 http://archive.ubuntu.com/ubuntu bionic/main amd64 libsm-dev amd64 2:1.2.2-1 [16.2 kB]
+Get:112 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxau-dev amd64 1:1.0.8-1ubuntu1 [9476 B]
+Get:113 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxdmcp-dev amd64 1:1.1.2-3 [25.1 kB]
+Get:114 http://archive.ubuntu.com/ubuntu bionic/main amd64 xtrans-dev all 1.3.5-1 [70.5 kB]
+Get:115 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb1-dev amd64 1.13-2~ubuntu18.04 [80.0 kB]
+Get:116 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libx11-dev amd64 2:1.6.4-3ubuntu0.2 [640 kB]
+Get:117 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libx11-doc all 2:1.6.4-3ubuntu0.2 [2065 kB]
+Get:118 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxt-dev amd64 1:1.1.5-1 [395 kB]
+Get:119 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openjdk-11-jre amd64 11.0.8+10-0ubuntu1~18.04.1 [34.4 kB]
+Get:120 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openjdk-11-jdk-headless amd64 11.0.8+10-0ubuntu1~18.04.1 [193 MB]
+Get:121 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openjdk-11-jdk amd64 11.0.8+10-0ubuntu1~18.04.1 [2264 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 284 MB in 32s (8767 kB/s)
+Selecting previously unselected package multiarch-support.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 4046 files and directories currently installed.)
+Preparing to unpack .../0-multiarch-support_2.27-3ubuntu1.2_amd64.deb ...
+Unpacking multiarch-support (2.27-3ubuntu1.2) ...
+Selecting previously unselected package libxau6:amd64.
+Preparing to unpack .../1-libxau6_1%3a1.0.8-1ubuntu1_amd64.deb ...
+Unpacking libxau6:amd64 (1:1.0.8-1ubuntu1) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../2-libbsd0_0.8.7-1ubuntu0.1_amd64.deb ...
+Unpacking libbsd0:amd64 (0.8.7-1ubuntu0.1) ...
+Selecting previously unselected package libxdmcp6:amd64.
+Preparing to unpack .../3-libxdmcp6_1%3a1.1.2-3_amd64.deb ...
+Unpacking libxdmcp6:amd64 (1:1.1.2-3) ...
+Selecting previously unselected package libxcb1:amd64.
+Preparing to unpack .../4-libxcb1_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb1:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libx11-data.
+Preparing to unpack .../5-libx11-data_2%3a1.6.4-3ubuntu0.2_all.deb ...
+Unpacking libx11-data (2:1.6.4-3ubuntu0.2) ...
+Selecting previously unselected package libx11-6:amd64.
+Preparing to unpack .../6-libx11-6_2%3a1.6.4-3ubuntu0.2_amd64.deb ...
+Unpacking libx11-6:amd64 (2:1.6.4-3ubuntu0.2) ...
+Setting up multiarch-support (2.27-3ubuntu1.2) ...
+Selecting previously unselected package libxext6:amd64.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 4336 files and directories currently installed.)
+Preparing to unpack .../000-libxext6_2%3a1.3.3-1_amd64.deb ...
+Unpacking libxext6:amd64 (2:1.3.3-1) ...
+Selecting previously unselected package libjpeg-turbo8:amd64.
+Preparing to unpack .../001-libjpeg-turbo8_1.5.2-0ubuntu5.18.04.4_amd64.deb ...
+Unpacking libjpeg-turbo8:amd64 (1.5.2-0ubuntu5.18.04.4) ...
+Selecting previously unselected package x11-common.
+Preparing to unpack .../002-x11-common_1%3a7.7+19ubuntu7.1_all.deb ...
+dpkg-query: no packages found matching nux-tools
+Unpacking x11-common (1:7.7+19ubuntu7.1) ...
+Selecting previously unselected package libice6:amd64.
+Preparing to unpack .../003-libice6_2%3a1.0.9-2_amd64.deb ...
+Unpacking libice6:amd64 (2:1.0.9-2) ...
+Selecting previously unselected package libsm6:amd64.
+Preparing to unpack .../004-libsm6_2%3a1.2.2-1_amd64.deb ...
+Unpacking libsm6:amd64 (2:1.2.2-1) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../005-libexpat1_2.2.5-3ubuntu0.2_amd64.deb ...
+Unpacking libexpat1:amd64 (2.2.5-3ubuntu0.2) ...
+Selecting previously unselected package libpng16-16:amd64.
+Preparing to unpack .../006-libpng16-16_1.6.34-1ubuntu0.18.04.2_amd64.deb ...
+Unpacking libpng16-16:amd64 (1.6.34-1ubuntu0.18.04.2) ...
+Selecting previously unselected package libfreetype6:amd64.
+Preparing to unpack .../007-libfreetype6_2.8.1-2ubuntu2_amd64.deb ...
+Unpacking libfreetype6:amd64 (2.8.1-2ubuntu2) ...
+Selecting previously unselected package ucf.
+Preparing to unpack .../008-ucf_3.0038_all.deb ...
+Moving old data out of the way
+Unpacking ucf (3.0038) ...
+Selecting previously unselected package fonts-dejavu-core.
+Preparing to unpack .../009-fonts-dejavu-core_2.37-1_all.deb ...
+Unpacking fonts-dejavu-core (2.37-1) ...
+Selecting previously unselected package fontconfig-config.
+Preparing to unpack .../010-fontconfig-config_2.12.6-0ubuntu2_all.deb ...
+Unpacking fontconfig-config (2.12.6-0ubuntu2) ...
+Selecting previously unselected package libfontconfig1:amd64.
+Preparing to unpack .../011-libfontconfig1_2.12.6-0ubuntu2_amd64.deb ...
+Unpacking libfontconfig1:amd64 (2.12.6-0ubuntu2) ...
+Selecting previously unselected package libxrender1:amd64.
+Preparing to unpack .../012-libxrender1_1%3a0.9.10-1_amd64.deb ...
+Unpacking libxrender1:amd64 (1:0.9.10-1) ...
+Selecting previously unselected package libxft2:amd64.
+Preparing to unpack .../013-libxft2_2.3.2-1_amd64.deb ...
+Unpacking libxft2:amd64 (2.3.2-1) ...
+Selecting previously unselected package libxinerama1:amd64.
+Preparing to unpack .../014-libxinerama1_2%3a1.1.3-1_amd64.deb ...
+Unpacking libxinerama1:amd64 (2:1.1.3-1) ...
+Selecting previously unselected package libxxf86dga1:amd64.
+Preparing to unpack .../015-libxxf86dga1_2%3a1.1.4-1_amd64.deb ...
+Unpacking libxxf86dga1:amd64 (2:1.1.4-1) ...
+Selecting previously unselected package libxxf86vm1:amd64.
+Preparing to unpack .../016-libxxf86vm1_1%3a1.1.4-1_amd64.deb ...
+Unpacking libxxf86vm1:amd64 (1:1.1.4-1) ...
+Selecting previously unselected package libssl1.1:amd64.
+Preparing to unpack .../017-libssl1.1_1.1.1-1ubuntu2.1~18.04.6_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.1-1ubuntu2.1~18.04.6) ...
+Selecting previously unselected package openssl.
+Preparing to unpack .../018-openssl_1.1.1-1ubuntu2.1~18.04.6_amd64.deb ...
+Unpacking openssl (1.1.1-1ubuntu2.1~18.04.6) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../019-ca-certificates_20190110~18.04.1_all.deb ...
+Unpacking ca-certificates (20190110~18.04.1) ...
+Selecting previously unselected package libapparmor1:amd64.
+Preparing to unpack .../020-libapparmor1_2.12-4ubuntu5.1_amd64.deb ...
+Unpacking libapparmor1:amd64 (2.12-4ubuntu5.1) ...
+Selecting previously unselected package libdbus-1-3:amd64.
+Preparing to unpack .../021-libdbus-1-3_1.12.2-1ubuntu1.2_amd64.deb ...
+Unpacking libdbus-1-3:amd64 (1.12.2-1ubuntu1.2) ...
+Selecting previously unselected package dbus.
+Preparing to unpack .../022-dbus_1.12.2-1ubuntu1.2_amd64.deb ...
+Unpacking dbus (1.12.2-1ubuntu1.2) ...
+Selecting previously unselected package libelf1:amd64.
+Preparing to unpack .../023-libelf1_0.170-0.4ubuntu0.1_amd64.deb ...
+Unpacking libelf1:amd64 (0.170-0.4ubuntu0.1) ...
+Selecting previously unselected package libglib2.0-0:amd64.
+Preparing to unpack .../024-libglib2.0-0_2.56.4-0ubuntu0.18.04.6_amd64.deb ...
+Unpacking libglib2.0-0:amd64 (2.56.4-0ubuntu0.18.04.6) ...
+Selecting previously unselected package libglib2.0-data.
+Preparing to unpack .../025-libglib2.0-data_2.56.4-0ubuntu0.18.04.6_all.deb ...
+Unpacking libglib2.0-data (2.56.4-0ubuntu0.18.04.6) ...
+Selecting previously unselected package libicu60:amd64.
+Preparing to unpack .../026-libicu60_60.2-3ubuntu3.1_amd64.deb ...
+Unpacking libicu60:amd64 (60.2-3ubuntu3.1) ...
+Selecting previously unselected package libsqlite3-0:amd64.
+Preparing to unpack .../027-libsqlite3-0_3.22.0-1ubuntu0.4_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.22.0-1ubuntu0.4) ...
+Selecting previously unselected package libxml2:amd64.
+Preparing to unpack .../028-libxml2_2.9.4+dfsg1-6.1ubuntu1.3_amd64.deb ...
+Unpacking libxml2:amd64 (2.9.4+dfsg1-6.1ubuntu1.3) ...
+Selecting previously unselected package shared-mime-info.
+Preparing to unpack .../029-shared-mime-info_1.9-2_amd64.deb ...
+Unpacking shared-mime-info (1.9-2) ...
+Selecting previously unselected package xdg-user-dirs.
+Preparing to unpack .../030-xdg-user-dirs_0.17-1ubuntu1_amd64.deb ...
+Unpacking xdg-user-dirs (0.17-1ubuntu1) ...
+Selecting previously unselected package krb5-locales.
+Preparing to unpack .../031-krb5-locales_1.16-2ubuntu0.1_all.deb ...
+Unpacking krb5-locales (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libdrm-common.
+Preparing to unpack .../032-libdrm-common_2.4.101-2~18.04.1_all.deb ...
+Unpacking libdrm-common (2.4.101-2~18.04.1) ...
+Selecting previously unselected package libdrm2:amd64.
+Preparing to unpack .../033-libdrm2_2.4.101-2~18.04.1_amd64.deb ...
+Unpacking libdrm2:amd64 (2.4.101-2~18.04.1) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../034-libedit2_3.1-20170329-1_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20170329-1) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../035-libkrb5support0_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../036-libk5crypto3_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../037-libkeyutils1_1.5.9-9.2ubuntu2_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.5.9-9.2ubuntu2) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../038-libkrb5-3_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../039-libgssapi-krb5-2_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libxmuu1:amd64.
+Preparing to unpack .../040-libxmuu1_2%3a1.1.2-2_amd64.deb ...
+Unpacking libxmuu1:amd64 (2:1.1.2-2) ...
+Selecting previously unselected package libatspi2.0-0:amd64.
+Preparing to unpack .../041-libatspi2.0-0_2.28.0-1_amd64.deb ...
+Unpacking libatspi2.0-0:amd64 (2.28.0-1) ...
+Selecting previously unselected package libxtst6:amd64.
+Preparing to unpack .../042-libxtst6_2%3a1.2.3-1_amd64.deb ...
+Unpacking libxtst6:amd64 (2:1.2.3-1) ...
+Selecting previously unselected package at-spi2-core.
+Preparing to unpack .../043-at-spi2-core_2.28.0-1_amd64.deb ...
+Unpacking at-spi2-core (2.28.0-1) ...
+Selecting previously unselected package java-common.
+Preparing to unpack .../044-java-common_0.68ubuntu1~18.04.1_all.deb ...
+Unpacking java-common (0.68ubuntu1~18.04.1) ...
+Selecting previously unselected package libavahi-common-data:amd64.
+Preparing to unpack .../045-libavahi-common-data_0.7-3.1ubuntu1.2_amd64.deb ...
+Unpacking libavahi-common-data:amd64 (0.7-3.1ubuntu1.2) ...
+Selecting previously unselected package libavahi-common3:amd64.
+Preparing to unpack .../046-libavahi-common3_0.7-3.1ubuntu1.2_amd64.deb ...
+Unpacking libavahi-common3:amd64 (0.7-3.1ubuntu1.2) ...
+Selecting previously unselected package libavahi-client3:amd64.
+Preparing to unpack .../047-libavahi-client3_0.7-3.1ubuntu1.2_amd64.deb ...
+Unpacking libavahi-client3:amd64 (0.7-3.1ubuntu1.2) ...
+Selecting previously unselected package libcups2:amd64.
+Preparing to unpack .../048-libcups2_2.2.7-1ubuntu2.8_amd64.deb ...
+Unpacking libcups2:amd64 (2.2.7-1ubuntu2.8) ...
+Selecting previously unselected package liblcms2-2:amd64.
+Preparing to unpack .../049-liblcms2-2_2.9-1ubuntu0.1_amd64.deb ...
+Unpacking liblcms2-2:amd64 (2.9-1ubuntu0.1) ...
+Selecting previously unselected package libjpeg8:amd64.
+Preparing to unpack .../050-libjpeg8_8c-2ubuntu8_amd64.deb ...
+Unpacking libjpeg8:amd64 (8c-2ubuntu8) ...
+Selecting previously unselected package libnspr4:amd64.
+Preparing to unpack .../051-libnspr4_2%3a4.18-1ubuntu1_amd64.deb ...
+Unpacking libnspr4:amd64 (2:4.18-1ubuntu1) ...
+Selecting previously unselected package libnss3:amd64.
+Preparing to unpack .../052-libnss3_2%3a3.35-2ubuntu2.9_amd64.deb ...
+Unpacking libnss3:amd64 (2:3.35-2ubuntu2.9) ...
+Selecting previously unselected package libasound2-data.
+Preparing to unpack .../053-libasound2-data_1.1.3-5ubuntu0.5_all.deb ...
+Unpacking libasound2-data (1.1.3-5ubuntu0.5) ...
+Selecting previously unselected package libasound2:amd64.
+Preparing to unpack .../054-libasound2_1.1.3-5ubuntu0.5_amd64.deb ...
+Unpacking libasound2:amd64 (1.1.3-5ubuntu0.5) ...
+Selecting previously unselected package libpcsclite1:amd64.
+Preparing to unpack .../055-libpcsclite1_1.8.23-1_amd64.deb ...
+Unpacking libpcsclite1:amd64 (1.8.23-1) ...
+Selecting previously unselected package libxi6:amd64.
+Preparing to unpack .../056-libxi6_2%3a1.7.9-1_amd64.deb ...
+Unpacking libxi6:amd64 (2:1.7.9-1) ...
+Selecting previously unselected package openjdk-11-jre-headless:amd64.
+Preparing to unpack .../057-openjdk-11-jre-headless_11.0.8+10-0ubuntu1~18.04.1_amd64.deb ...
+Unpacking openjdk-11-jre-headless:amd64 (11.0.8+10-0ubuntu1~18.04.1) ...
+Selecting previously unselected package ca-certificates-java.
+Preparing to unpack .../058-ca-certificates-java_20180516ubuntu1~18.04.1_all.deb ...
+Unpacking ca-certificates-java (20180516ubuntu1~18.04.1) ...
+Selecting previously unselected package fonts-dejavu-extra.
+Preparing to unpack .../059-fonts-dejavu-extra_2.37-1_all.deb ...
+Unpacking fonts-dejavu-extra (2.37-1) ...
+Selecting previously unselected package libatk1.0-data.
+Preparing to unpack .../060-libatk1.0-data_2.28.1-1_all.deb ...
+Unpacking libatk1.0-data (2.28.1-1) ...
+Selecting previously unselected package libatk1.0-0:amd64.
+Preparing to unpack .../061-libatk1.0-0_2.28.1-1_amd64.deb ...
+Unpacking libatk1.0-0:amd64 (2.28.1-1) ...
+Selecting previously unselected package libatk-bridge2.0-0:amd64.
+Preparing to unpack .../062-libatk-bridge2.0-0_2.26.2-1_amd64.deb ...
+Unpacking libatk-bridge2.0-0:amd64 (2.26.2-1) ...
+Selecting previously unselected package libfontenc1:amd64.
+Preparing to unpack .../063-libfontenc1_1%3a1.1.3-1_amd64.deb ...
+Unpacking libfontenc1:amd64 (1:1.1.3-1) ...
+Selecting previously unselected package libglvnd0:amd64.
+Preparing to unpack .../064-libglvnd0_1.0.0-2ubuntu2.3_amd64.deb ...
+Unpacking libglvnd0:amd64 (1.0.0-2ubuntu2.3) ...
+Selecting previously unselected package libglapi-mesa:amd64.
+Preparing to unpack .../065-libglapi-mesa_20.0.8-0ubuntu1~18.04.1_amd64.deb ...
+Unpacking libglapi-mesa:amd64 (20.0.8-0ubuntu1~18.04.1) ...
+Selecting previously unselected package libx11-xcb1:amd64.
+Preparing to unpack .../066-libx11-xcb1_2%3a1.6.4-3ubuntu0.2_amd64.deb ...
+Unpacking libx11-xcb1:amd64 (2:1.6.4-3ubuntu0.2) ...
+Selecting previously unselected package libxcb-dri2-0:amd64.
+Preparing to unpack .../067-libxcb-dri2-0_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-dri2-0:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libxcb-dri3-0:amd64.
+Preparing to unpack .../068-libxcb-dri3-0_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-dri3-0:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libxcb-glx0:amd64.
+Preparing to unpack .../069-libxcb-glx0_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-glx0:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libxcb-present0:amd64.
+Preparing to unpack .../070-libxcb-present0_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-present0:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libxcb-sync1:amd64.
+Preparing to unpack .../071-libxcb-sync1_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-sync1:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libxdamage1:amd64.
+Preparing to unpack .../072-libxdamage1_1%3a1.1.4-3_amd64.deb ...
+Unpacking libxdamage1:amd64 (1:1.1.4-3) ...
+Selecting previously unselected package libxfixes3:amd64.
+Preparing to unpack .../073-libxfixes3_1%3a5.0.3-1_amd64.deb ...
+Unpacking libxfixes3:amd64 (1:5.0.3-1) ...
+Selecting previously unselected package libxshmfence1:amd64.
+Preparing to unpack .../074-libxshmfence1_1.3-1_amd64.deb ...
+Unpacking libxshmfence1:amd64 (1.3-1) ...
+Selecting previously unselected package libdrm-amdgpu1:amd64.
+Preparing to unpack .../075-libdrm-amdgpu1_2.4.101-2~18.04.1_amd64.deb ...
+Unpacking libdrm-amdgpu1:amd64 (2.4.101-2~18.04.1) ...
+Selecting previously unselected package libpciaccess0:amd64.
+Preparing to unpack .../076-libpciaccess0_0.14-1_amd64.deb ...
+Unpacking libpciaccess0:amd64 (0.14-1) ...
+Selecting previously unselected package libdrm-intel1:amd64.
+Preparing to unpack .../077-libdrm-intel1_2.4.101-2~18.04.1_amd64.deb ...
+Unpacking libdrm-intel1:amd64 (2.4.101-2~18.04.1) ...
+Selecting previously unselected package libdrm-nouveau2:amd64.
+Preparing to unpack .../078-libdrm-nouveau2_2.4.101-2~18.04.1_amd64.deb ...
+Unpacking libdrm-nouveau2:amd64 (2.4.101-2~18.04.1) ...
+Selecting previously unselected package libdrm-radeon1:amd64.
+Preparing to unpack .../079-libdrm-radeon1_2.4.101-2~18.04.1_amd64.deb ...
+Unpacking libdrm-radeon1:amd64 (2.4.101-2~18.04.1) ...
+Selecting previously unselected package libllvm10:amd64.
+Preparing to unpack .../080-libllvm10_1%3a10.0.0-4ubuntu1~18.04.2_amd64.deb ...
+Unpacking libllvm10:amd64 (1:10.0.0-4ubuntu1~18.04.2) ...
+Selecting previously unselected package libsensors4:amd64.
+Preparing to unpack .../081-libsensors4_1%3a3.4.0-4_amd64.deb ...
+Unpacking libsensors4:amd64 (1:3.4.0-4) ...
+Selecting previously unselected package libgl1-mesa-dri:amd64.
+Preparing to unpack .../082-libgl1-mesa-dri_20.0.8-0ubuntu1~18.04.1_amd64.deb ...
+Unpacking libgl1-mesa-dri:amd64 (20.0.8-0ubuntu1~18.04.1) ...
+Selecting previously unselected package libglx-mesa0:amd64.
+Preparing to unpack .../083-libglx-mesa0_20.0.8-0ubuntu1~18.04.1_amd64.deb ...
+Unpacking libglx-mesa0:amd64 (20.0.8-0ubuntu1~18.04.1) ...
+Selecting previously unselected package libglx0:amd64.
+Preparing to unpack .../084-libglx0_1.0.0-2ubuntu2.3_amd64.deb ...
+Unpacking libglx0:amd64 (1.0.0-2ubuntu2.3) ...
+Selecting previously unselected package libgl1:amd64.
+Preparing to unpack .../085-libgl1_1.0.0-2ubuntu2.3_amd64.deb ...
+Unpacking libgl1:amd64 (1.0.0-2ubuntu2.3) ...
+Selecting previously unselected package libxt6:amd64.
+Preparing to unpack .../086-libxt6_1%3a1.1.5-1_amd64.deb ...
+Unpacking libxt6:amd64 (1:1.1.5-1) ...
+Selecting previously unselected package libxmu6:amd64.
+Preparing to unpack .../087-libxmu6_2%3a1.1.2-2_amd64.deb ...
+Unpacking libxmu6:amd64 (2:1.1.2-2) ...
+Selecting previously unselected package libxpm4:amd64.
+Preparing to unpack .../088-libxpm4_1%3a3.5.12-1_amd64.deb ...
+Unpacking libxpm4:amd64 (1:3.5.12-1) ...
+Selecting previously unselected package libxaw7:amd64.
+Preparing to unpack .../089-libxaw7_2%3a1.0.13-1_amd64.deb ...
+Unpacking libxaw7:amd64 (2:1.0.13-1) ...
+Selecting previously unselected package libxcb-shape0:amd64.
+Preparing to unpack .../090-libxcb-shape0_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-shape0:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libxcomposite1:amd64.
+Preparing to unpack .../091-libxcomposite1_1%3a0.4.4-2_amd64.deb ...
+Unpacking libxcomposite1:amd64 (1:0.4.4-2) ...
+Selecting previously unselected package libxrandr2:amd64.
+Preparing to unpack .../092-libxrandr2_2%3a1.5.1-1_amd64.deb ...
+Unpacking libxrandr2:amd64 (2:1.5.1-1) ...
+Selecting previously unselected package libxv1:amd64.
+Preparing to unpack .../093-libxv1_2%3a1.0.11-1_amd64.deb ...
+Unpacking libxv1:amd64 (2:1.0.11-1) ...
+Selecting previously unselected package x11-utils.
+Preparing to unpack .../094-x11-utils_7.7+3build1_amd64.deb ...
+Unpacking x11-utils (7.7+3build1) ...
+Selecting previously unselected package libatk-wrapper-java.
+Preparing to unpack .../095-libatk-wrapper-java_0.33.3-20ubuntu0.1_all.deb ...
+Unpacking libatk-wrapper-java (0.33.3-20ubuntu0.1) ...
+Selecting previously unselected package libatk-wrapper-java-jni:amd64.
+Preparing to unpack .../096-libatk-wrapper-java-jni_0.33.3-20ubuntu0.1_amd64.deb ...
+Unpacking libatk-wrapper-java-jni:amd64 (0.33.3-20ubuntu0.1) ...
+Selecting previously unselected package libgif7:amd64.
+Preparing to unpack .../097-libgif7_5.1.4-2ubuntu0.1_amd64.deb ...
+Unpacking libgif7:amd64 (5.1.4-2ubuntu0.1) ...
+Selecting previously unselected package xorg-sgml-doctools.
+Preparing to unpack .../098-xorg-sgml-doctools_1%3a1.11-1_all.deb ...
+Unpacking xorg-sgml-doctools (1:1.11-1) ...
+Selecting previously unselected package x11proto-dev.
+Preparing to unpack .../099-x11proto-dev_2018.4-4_all.deb ...
+Unpacking x11proto-dev (2018.4-4) ...
+Selecting previously unselected package x11proto-core-dev.
+Preparing to unpack .../100-x11proto-core-dev_2018.4-4_all.deb ...
+Unpacking x11proto-core-dev (2018.4-4) ...
+Selecting previously unselected package libice-dev:amd64.
+Preparing to unpack .../101-libice-dev_2%3a1.0.9-2_amd64.deb ...
+Unpacking libice-dev:amd64 (2:1.0.9-2) ...
+Selecting previously unselected package libpthread-stubs0-dev:amd64.
+Preparing to unpack .../102-libpthread-stubs0-dev_0.3-4_amd64.deb ...
+Unpacking libpthread-stubs0-dev:amd64 (0.3-4) ...
+Selecting previously unselected package libsm-dev:amd64.
+Preparing to unpack .../103-libsm-dev_2%3a1.2.2-1_amd64.deb ...
+Unpacking libsm-dev:amd64 (2:1.2.2-1) ...
+Selecting previously unselected package libxau-dev:amd64.
+Preparing to unpack .../104-libxau-dev_1%3a1.0.8-1ubuntu1_amd64.deb ...
+Unpacking libxau-dev:amd64 (1:1.0.8-1ubuntu1) ...
+Selecting previously unselected package libxdmcp-dev:amd64.
+Preparing to unpack .../105-libxdmcp-dev_1%3a1.1.2-3_amd64.deb ...
+Unpacking libxdmcp-dev:amd64 (1:1.1.2-3) ...
+Selecting previously unselected package xtrans-dev.
+Preparing to unpack .../106-xtrans-dev_1.3.5-1_all.deb ...
+Unpacking xtrans-dev (1.3.5-1) ...
+Selecting previously unselected package libxcb1-dev:amd64.
+Preparing to unpack .../107-libxcb1-dev_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb1-dev:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libx11-dev:amd64.
+Preparing to unpack .../108-libx11-dev_2%3a1.6.4-3ubuntu0.2_amd64.deb ...
+Unpacking libx11-dev:amd64 (2:1.6.4-3ubuntu0.2) ...
+Selecting previously unselected package libx11-doc.
+Preparing to unpack .../109-libx11-doc_2%3a1.6.4-3ubuntu0.2_all.deb ...
+Unpacking libx11-doc (2:1.6.4-3ubuntu0.2) ...
+Selecting previously unselected package libxt-dev:amd64.
+Preparing to unpack .../110-libxt-dev_1%3a1.1.5-1_amd64.deb ...
+Unpacking libxt-dev:amd64 (1:1.1.5-1) ...
+Selecting previously unselected package openjdk-11-jre:amd64.
+Preparing to unpack .../111-openjdk-11-jre_11.0.8+10-0ubuntu1~18.04.1_amd64.deb ...
+Unpacking openjdk-11-jre:amd64 (11.0.8+10-0ubuntu1~18.04.1) ...
+Selecting previously unselected package openjdk-11-jdk-headless:amd64.
+Preparing to unpack .../112-openjdk-11-jdk-headless_11.0.8+10-0ubuntu1~18.04.1_amd64.deb ...
+Unpacking openjdk-11-jdk-headless:amd64 (11.0.8+10-0ubuntu1~18.04.1) ...
+Selecting previously unselected package openjdk-11-jdk:amd64.
+Preparing to unpack .../113-openjdk-11-jdk_11.0.8+10-0ubuntu1~18.04.1_amd64.deb ...
+Unpacking openjdk-11-jdk:amd64 (11.0.8+10-0ubuntu1~18.04.1) ...
+Setting up libedit2:amd64 (3.1-20170329-1) ...
+Setting up libglvnd0:amd64 (1.0.0-2ubuntu2.3) ...
+Setting up libexpat1:amd64 (2.2.5-3ubuntu0.2) ...
+Setting up libicu60:amd64 (60.2-3ubuntu3.1) ...
+Setting up libllvm10:amd64 (1:10.0.0-4ubuntu1~18.04.2) ...
+Setting up libpng16-16:amd64 (1.6.34-1ubuntu0.18.04.2) ...
+Setting up liblcms2-2:amd64 (2.9-1ubuntu0.1) ...
+Setting up libpcsclite1:amd64 (1.8.23-1) ...
+Setting up libpthread-stubs0-dev:amd64 (0.3-4) ...
+Setting up fonts-dejavu-core (2.37-1) ...
+Setting up libelf1:amd64 (0.170-0.4ubuntu0.1) ...
+Setting up libglib2.0-0:amd64 (2.56.4-0ubuntu0.18.04.6) ...
+No schema files found: doing nothing.
+Setting up libasound2-data (1.1.3-5ubuntu0.5) ...
+Setting up libxshmfence1:amd64 (1.3-1) ...
+Setting up xorg-sgml-doctools (1:1.11-1) ...
+Setting up java-common (0.68ubuntu1~18.04.1) ...
+Setting up libgif7:amd64 (5.1.4-2ubuntu0.1) ...
+Setting up libjpeg-turbo8:amd64 (1.5.2-0ubuntu5.18.04.4) ...
+Setting up libglapi-mesa:amd64 (20.0.8-0ubuntu1~18.04.1) ...
+Setting up libbsd0:amd64 (0.8.7-1ubuntu0.1) ...
+Setting up libkrb5support0:amd64 (1.16-2ubuntu0.1) ...
+Setting up libnspr4:amd64 (2:4.18-1ubuntu1) ...
+Setting up ucf (3.0038) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libxml2:amd64 (2.9.4+dfsg1-6.1ubuntu1.3) ...
+Setting up x11proto-dev (2018.4-4) ...
+Setting up libfreetype6:amd64 (2.8.1-2ubuntu2) ...
+Setting up libasound2:amd64 (1.1.3-5ubuntu0.5) ...
+Setting up libdrm-common (2.4.101-2~18.04.1) ...
+Setting up libatk1.0-data (2.28.1-1) ...
+Setting up libx11-xcb1:amd64 (2:1.6.4-3ubuntu0.2) ...
+Setting up xtrans-dev (1.3.5-1) ...
+Setting up libglib2.0-data (2.56.4-0ubuntu0.18.04.6) ...
+Setting up krb5-locales (1.16-2ubuntu0.1) ...
+Setting up libapparmor1:amd64 (2.12-4ubuntu5.1) ...
+Setting up libssl1.1:amd64 (1.1.1-1ubuntu2.1~18.04.6) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libatk1.0-0:amd64 (2.28.1-1) ...
+Setting up openssl (1.1.1-1ubuntu2.1~18.04.6) ...
+Setting up libsqlite3-0:amd64 (3.22.0-1ubuntu0.4) ...
+Setting up libfontenc1:amd64 (1:1.1.3-1) ...
+Setting up libx11-doc (2:1.6.4-3ubuntu0.2) ...
+Setting up libpciaccess0:amd64 (0.14-1) ...
+Setting up libsensors4:amd64 (1:3.4.0-4) ...
+Setting up shared-mime-info (1.9-2) ...
+Setting up libxdmcp6:amd64 (1:1.1.2-3) ...
+Setting up libkeyutils1:amd64 (1.5.9-9.2ubuntu2) ...
+Setting up fonts-dejavu-extra (2.37-1) ...
+Setting up x11-common (1:7.7+19ubuntu7.1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up ca-certificates (20190110~18.04.1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Updating certificates in /etc/ssl/certs...
+127 added, 0 removed; done.
+Setting up xdg-user-dirs (0.17-1ubuntu1) ...
+Setting up libx11-data (2:1.6.4-3ubuntu0.2) ...
+Setting up libxau6:amd64 (1:1.0.8-1ubuntu1) ...
+Setting up libdbus-1-3:amd64 (1.12.2-1ubuntu1.2) ...
+Setting up libavahi-common-data:amd64 (0.7-3.1ubuntu1.2) ...
+Setting up libjpeg8:amd64 (8c-2ubuntu8) ...
+Setting up libk5crypto3:amd64 (1.16-2ubuntu0.1) ...
+Setting up fontconfig-config (2.12.6-0ubuntu2) ...
+Setting up x11proto-core-dev (2018.4-4) ...
+Setting up libnss3:amd64 (2:3.35-2ubuntu2.9) ...
+Setting up libxau-dev:amd64 (1:1.0.8-1ubuntu1) ...
+Setting up libdrm2:amd64 (2.4.101-2~18.04.1) ...
+Setting up libdrm-intel1:amd64 (2.4.101-2~18.04.1) ...
+Setting up libxdmcp-dev:amd64 (1:1.1.2-3) ...
+Setting up libice6:amd64 (2:1.0.9-2) ...
+Setting up libkrb5-3:amd64 (1.16-2ubuntu0.1) ...
+Setting up libavahi-common3:amd64 (0.7-3.1ubuntu1.2) ...
+Setting up libdrm-radeon1:amd64 (2.4.101-2~18.04.1) ...
+Setting up dbus (1.12.2-1ubuntu1.2) ...
+Setting up libdrm-nouveau2:amd64 (2.4.101-2~18.04.1) ...
+Setting up libxcb1:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libxcb-present0:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libfontconfig1:amd64 (2.12.6-0ubuntu2) ...
+Setting up libxcb-dri2-0:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libsm6:amd64 (2:1.2.2-1) ...
+Setting up libxcb-dri3-0:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libxcb-glx0:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libdrm-amdgpu1:amd64 (2.4.101-2~18.04.1) ...
+Setting up libx11-6:amd64 (2:1.6.4-3ubuntu0.2) ...
+Setting up libgl1-mesa-dri:amd64 (20.0.8-0ubuntu1~18.04.1) ...
+Setting up libxmuu1:amd64 (2:1.1.2-2) ...
+Setting up libxcb-sync1:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libgssapi-krb5-2:amd64 (1.16-2ubuntu0.1) ...
+Setting up libice-dev:amd64 (2:1.0.9-2) ...
+Setting up libxcomposite1:amd64 (1:0.4.4-2) ...
+Setting up libxpm4:amd64 (1:3.5.12-1) ...
+Setting up libxt6:amd64 (1:1.1.5-1) ...
+Setting up libxcb-shape0:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libxrender1:amd64 (1:0.9.10-1) ...
+Setting up libxcb1-dev:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libavahi-client3:amd64 (0.7-3.1ubuntu1.2) ...
+Setting up libx11-dev:amd64 (2:1.6.4-3ubuntu0.2) ...
+Setting up libxft2:amd64 (2.3.2-1) ...
+Setting up libcups2:amd64 (2.2.7-1ubuntu2.8) ...
+Setting up libsm-dev:amd64 (2:1.2.2-1) ...
+Setting up libxdamage1:amd64 (1:1.1.4-3) ...
+Setting up libxext6:amd64 (2:1.3.3-1) ...
+Setting up libxfixes3:amd64 (1:5.0.3-1) ...
+Setting up libatspi2.0-0:amd64 (2.28.0-1) ...
+Setting up libxtst6:amd64 (2:1.2.3-1) ...
+Setting up libxmu6:amd64 (2:1.1.2-2) ...
+Setting up libxxf86dga1:amd64 (2:1.1.4-1) ...
+Setting up libatk-bridge2.0-0:amd64 (2.26.2-1) ...
+Setting up libxv1:amd64 (2:1.0.11-1) ...
+Setting up libxxf86vm1:amd64 (1:1.1.4-1) ...
+Setting up libxrandr2:amd64 (2:1.5.1-1) ...
+Setting up libglx-mesa0:amd64 (20.0.8-0ubuntu1~18.04.1) ...
+Setting up libxi6:amd64 (2:1.7.9-1) ...
+Setting up libxaw7:amd64 (2:1.0.13-1) ...
+Setting up libxinerama1:amd64 (2:1.1.3-1) ...
+Setting up libxt-dev:amd64 (1:1.1.5-1) ...
+Setting up at-spi2-core (2.28.0-1) ...
+Setting up libglx0:amd64 (1.0.0-2ubuntu2.3) ...
+Setting up libgl1:amd64 (1.0.0-2ubuntu2.3) ...
+Setting up x11-utils (7.7+3build1) ...
+Setting up libatk-wrapper-java (0.33.3-20ubuntu0.1) ...
+Setting up libatk-wrapper-java-jni:amd64 (0.33.3-20ubuntu0.1) ...
+Setting up openjdk-11-jre-headless:amd64 (11.0.8+10-0ubuntu1~18.04.1) ...
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/rmid to provide /usr/bin/rmid (rmid) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/java to provide /usr/bin/java (java) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/keytool to provide /usr/bin/keytool (keytool) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jjs to provide /usr/bin/jjs (jjs) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/pack200 to provide /usr/bin/pack200 (pack200) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/rmiregistry to provide /usr/bin/rmiregistry (rmiregistry) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/unpack200 to provide /usr/bin/unpack200 (unpack200) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jfr to provide /usr/bin/jfr (jfr) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/lib/jexec to provide /usr/bin/jexec (jexec) in auto mode
+Setting up openjdk-11-jdk-headless:amd64 (11.0.8+10-0ubuntu1~18.04.1) ...
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jar to provide /usr/bin/jar (jar) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jarsigner to provide /usr/bin/jarsigner (jarsigner) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/javac to provide /usr/bin/javac (javac) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/javadoc to provide /usr/bin/javadoc (javadoc) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/javap to provide /usr/bin/javap (javap) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jcmd to provide /usr/bin/jcmd (jcmd) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jdb to provide /usr/bin/jdb (jdb) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jdeprscan to provide /usr/bin/jdeprscan (jdeprscan) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jdeps to provide /usr/bin/jdeps (jdeps) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jimage to provide /usr/bin/jimage (jimage) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jinfo to provide /usr/bin/jinfo (jinfo) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jlink to provide /usr/bin/jlink (jlink) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jmap to provide /usr/bin/jmap (jmap) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jmod to provide /usr/bin/jmod (jmod) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jps to provide /usr/bin/jps (jps) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jrunscript to provide /usr/bin/jrunscript (jrunscript) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jshell to provide /usr/bin/jshell (jshell) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jstack to provide /usr/bin/jstack (jstack) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jstat to provide /usr/bin/jstat (jstat) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jstatd to provide /usr/bin/jstatd (jstatd) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/rmic to provide /usr/bin/rmic (rmic) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/serialver to provide /usr/bin/serialver (serialver) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jaotc to provide /usr/bin/jaotc (jaotc) in auto mode
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jhsdb to provide /usr/bin/jhsdb (jhsdb) in auto mode
+Setting up openjdk-11-jre:amd64 (11.0.8+10-0ubuntu1~18.04.1) ...
+Setting up ca-certificates-java (20180516ubuntu1~18.04.1) ...
+head: cannot open '/etc/ssl/certs/java/cacerts' for reading: No such file or directory
+Adding debian:GlobalSign_Root_CA_-_R6.pem
+Adding debian:Chambers_of_Commerce_Root_-_2008.pem
+Adding debian:DigiCert_Assured_ID_Root_CA.pem
+Adding debian:EE_Certification_Centre_Root_CA.pem
+Adding debian:Baltimore_CyberTrust_Root.pem
+Adding debian:Staat_der_Nederlanden_Root_CA_-_G2.pem
+Adding debian:Security_Communication_Root_CA.pem
+Adding debian:QuoVadis_Root_CA_2_G3.pem
+Adding debian:CFCA_EV_ROOT.pem
+Adding debian:Entrust_Root_Certification_Authority_-_G2.pem
+Adding debian:D-TRUST_Root_Class_3_CA_2_2009.pem
+Adding debian:certSIGN_ROOT_CA.pem
+Adding debian:GeoTrust_Global_CA.pem
+Adding debian:COMODO_ECC_Certification_Authority.pem
+Adding debian:ISRG_Root_X1.pem
+Adding debian:USERTrust_ECC_Certification_Authority.pem
+Adding debian:DigiCert_Assured_ID_Root_G3.pem
+Adding debian:GlobalSign_Root_CA_-_R3.pem
+Adding debian:SwissSign_Silver_CA_-_G2.pem
+Adding debian:AffirmTrust_Commercial.pem
+Adding debian:Atos_TrustedRoot_2011.pem
+Adding debian:GlobalSign_ECC_Root_CA_-_R5.pem
+Adding debian:Buypass_Class_3_Root_CA.pem
+Adding debian:EC-ACC.pem
+Adding debian:OISTE_WISeKey_Global_Root_GB_CA.pem
+Adding debian:AC_RAIZ_FNMT-RCM.pem
+Adding debian:Starfield_Root_Certificate_Authority_-_G2.pem
+Adding debian:TUBITAK_Kamu_SM_SSL_Kok_Sertifikasi_-_Surum_1.pem
+Adding debian:OISTE_WISeKey_Global_Root_GA_CA.pem
+Adding debian:thawte_Primary_Root_CA_-_G2.pem
+Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_-_G3.pem
+Adding debian:GDCA_TrustAUTH_R5_ROOT.pem
+Adding debian:GeoTrust_Universal_CA_2.pem
+Adding debian:GlobalSign_ECC_Root_CA_-_R4.pem
+Adding debian:Go_Daddy_Class_2_CA.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2011.pem
+Adding debian:SSL.com_EV_Root_Certification_Authority_ECC.pem
+Adding debian:Deutsche_Telekom_Root_CA_2.pem
+Adding debian:DigiCert_Global_Root_G3.pem
+Adding debian:Amazon_Root_CA_3.pem
+Adding debian:DST_Root_CA_X3.pem
+Adding debian:QuoVadis_Root_CA_3.pem
+Adding debian:QuoVadis_Root_CA.pem
+Adding debian:Entrust_Root_Certification_Authority.pem
+Adding debian:SSL.com_Root_Certification_Authority_RSA.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_ECC_RootCA_2015.pem
+Adding debian:QuoVadis_Root_CA_3_G3.pem
+Adding debian:DigiCert_Global_Root_G2.pem
+Adding debian:Staat_der_Nederlanden_Root_CA_-_G3.pem
+Adding debian:TWCA_Global_Root_CA.pem
+Adding debian:GeoTrust_Universal_CA.pem
+Adding debian:NetLock_Arany_=Class_Gold=_Főtanúsítvány.pem
+Adding debian:SecureTrust_CA.pem
+Adding debian:USERTrust_RSA_Certification_Authority.pem
+Adding debian:QuoVadis_Root_CA_1_G3.pem
+Adding debian:QuoVadis_Root_CA_2.pem
+Adding debian:thawte_Primary_Root_CA_-_G3.pem
+Adding debian:XRamp_Global_CA_Root.pem
+Adding debian:Izenpe.com.pem
+Adding debian:Certigna.pem
+Adding debian:IdenTrust_Commercial_Root_CA_1.pem
+Adding debian:Trustis_FPS_Root_CA.pem
+Adding debian:T-TeleSec_GlobalRoot_Class_3.pem
+Adding debian:D-TRUST_Root_Class_3_CA_2_EV_2009.pem
+Adding debian:TrustCor_RootCert_CA-2.pem
+Adding debian:thawte_Primary_Root_CA.pem
+Adding debian:GlobalSign_Root_CA_-_R2.pem
+Adding debian:GeoTrust_Primary_Certification_Authority.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2015.pem
+Adding debian:Staat_der_Nederlanden_EV_Root_CA.pem
+Adding debian:Secure_Global_CA.pem
+Adding debian:SZAFIR_ROOT_CA2.pem
+Adding debian:Certinomis_-_Root_CA.pem
+Adding debian:DigiCert_Global_Root_CA.pem
+Adding debian:GeoTrust_Primary_Certification_Authority_-_G2.pem
+Adding debian:AffirmTrust_Networking.pem
+Adding debian:Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem
+Adding debian:TeliaSonera_Root_CA_v1.pem
+Adding debian:Certplus_Class_2_Primary_CA.pem
+Adding debian:COMODO_Certification_Authority.pem
+Adding debian:Buypass_Class_2_Root_CA.pem
+Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5.pem
+Adding debian:Actalis_Authentication_Root_CA.pem
+Adding debian:Amazon_Root_CA_2.pem
+Adding debian:SecureSign_RootCA11.pem
+Adding debian:Global_Chambersign_Root_-_2008.pem
+Adding debian:Microsec_e-Szigno_Root_CA_2009.pem
+Adding debian:Certum_Trusted_Network_CA_2.pem
+Adding debian:DigiCert_High_Assurance_EV_Root_CA.pem
+Adding debian:Comodo_AAA_Services_root.pem
+Adding debian:AffirmTrust_Premium_ECC.pem
+Adding debian:ACCVRAIZ1.pem
+Adding debian:E-Tugra_Certification_Authority.pem
+Adding debian:AffirmTrust_Premium.pem
+Adding debian:Starfield_Services_Root_Certificate_Authority_-_G2.pem
+Adding debian:DigiCert_Assured_ID_Root_G2.pem
+Adding debian:GeoTrust_Primary_Certification_Authority_-_G3.pem
+Adding debian:Amazon_Root_CA_1.pem
+Adding debian:SSL.com_EV_Root_Certification_Authority_RSA_R2.pem
+Adding debian:Amazon_Root_CA_4.pem
+Adding debian:DigiCert_Trusted_Root_G4.pem
+Adding debian:Starfield_Class_2_CA.pem
+Adding debian:Cybertrust_Global_Root.pem
+Adding debian:IdenTrust_Public_Sector_Root_CA_1.pem
+Adding debian:OISTE_WISeKey_Global_Root_GC_CA.pem
+Adding debian:SwissSign_Gold_CA_-_G2.pem
+Adding debian:TrustCor_RootCert_CA-1.pem
+Adding debian:Entrust.net_Premium_2048_Secure_Server_CA.pem
+Adding debian:SSL.com_Root_Certification_Authority_ECC.pem
+Adding debian:GlobalSign_Root_CA.pem
+Adding debian:COMODO_RSA_Certification_Authority.pem
+Adding debian:VeriSign_Universal_Root_Certification_Authority.pem
+Adding debian:TrustCor_ECA-1.pem
+Adding debian:LuxTrust_Global_Root_2.pem
+Adding debian:TWCA_Root_Certification_Authority.pem
+Adding debian:Certum_Trusted_Network_CA.pem
+Adding debian:Taiwan_GRCA.pem
+Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G4.pem
+Adding debian:Entrust_Root_Certification_Authority_-_EC1.pem
+Adding debian:ePKI_Root_Certification_Authority.pem
+Adding debian:Network_Solutions_Certificate_Authority.pem
+Adding debian:CA_Disig_Root_R2.pem
+Adding debian:Go_Daddy_Root_Certificate_Authority_-_G2.pem
+Adding debian:T-TeleSec_GlobalRoot_Class_2.pem
+Adding debian:Hongkong_Post_Root_CA_1.pem
+Adding debian:Sonera_Class_2_Root_CA.pem
+Adding debian:Security_Communication_RootCA2.pem
+done.
+Setting up openjdk-11-jdk:amd64 (11.0.8+10-0ubuntu1~18.04.1) ...
+update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jconsole to provide /usr/bin/jconsole (jconsole) in auto mode
+Processing triggers for libc-bin (2.27-3ubuntu1.2) ...
+Processing triggers for ca-certificates (20190110~18.04.1) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+
+done.
+done.
+Removing intermediate container b546acd15a1e
+ ---> 5fbc53cc2c54
+Step 4/5 : COPY ./springbootwebapp/target/spring-boot-web-0.0.1-SNAPSHOT.jar /project/
+ ---> 1ab91357ec87
+Step 5/5 : ENTRYPOINT java -jar /project/spring-boot-web-0.0.1-SNAPSHOT.jar
+ ---> Running in 6013ab3c083a
+Removing intermediate container 6013ab3c083a
+ ---> 40a380861195
+Successfully built 40a380861195
+Successfully tagged image:build_1
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run container with web-app)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker run -itd -p 8090:8080 --name container_1 image:build_1
+49004388d41b4023c27ce5a4c8e99a2ea2baad2f754c0406997152d656c41086
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test web-app)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ wget -S localhost:8090
+--2020-08-01 19:57:37--  http://localhost:8090/
+Resolving localhost (localhost)... 127.0.0.1
+Connecting to localhost (localhost)|127.0.0.1|:8090... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2020-08-01 19:57:38--  (try: 2)  http://localhost:8090/
+Connecting to localhost (localhost)|127.0.0.1|:8090... connected.
+HTTP request sent, awaiting response... Read error (Connection reset by peer) in headers.
+Retrying.
+
+--2020-08-01 19:57:40--  (try: 3)  http://localhost:8090/
+Connecting to localhost (localhost)|127.0.0.1|:8090... connected.
+HTTP request sent, awaiting response... Read error (Connection reset by peer) in headers.
+Retrying.
+
+--2020-08-01 19:57:43--  (try: 4)  http://localhost:8090/
+Connecting to localhost (localhost)|127.0.0.1|:8090... connected.
+HTTP request sent, awaiting response... Read error (Connection reset by peer) in headers.
+Retrying.
+
+--2020-08-01 19:57:47--  (try: 5)  http://localhost:8090/
+Connecting to localhost (localhost)|127.0.0.1|:8090... connected.
+HTTP request sent, awaiting response... 
+  HTTP/1.1 200 
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+  Content-Type: text/html;charset=UTF-8
+  Content-Language: en-US
+  Transfer-Encoding: chunked
+  Date: Sat, 01 Aug 2020 16:57:48 GMT
+  Keep-Alive: timeout=60
+  Connection: keep-alive
+Length: unspecified [text/html]
+Saving to: ‘index.html.2’
+
+     0K .                                                      85,6M=0s
+
+2020-08-01 19:57:48 (85,6 MB/s) - ‘index.html.2’ saved [1348]
+
+[Pipeline] sh
++ curl localhost:8090
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  1348    0  1348    0     0   131k      0 --:--:-- --:--:-- --:--:--  131k
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+    <title>Spring Framework Guru</title>
+
+     
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          rel="stylesheet" media="screen" />
+
+    <script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+
+    <link href="/css/guru.css"
+          rel="stylesheet" media="screen"/>
+ 
+</head>
+<body>
+
+<div class="container">
+     
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Home</a>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/products">Products</a></li>
+                        <li><a href="/product/new">Create Product</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <div class="row text-center">
+                <div class="">
+                    <h2>Spring Framework Guru</h2>
+
+                    <h3>Spring Boot Web App</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <img src="/images/NewBannerBOOTS_2.png" width="400"/>
+            </div>
+        </div>
+     
+</div>
+</body>
+</html>
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] sh
++ docker stop container_1
+container_1
++ docker rm container_1
+container_1
+[Pipeline] sh
++ docker rmi -f image:build_1
+Untagged: image:build_1
+Deleted: sha256:40a38086119531b3367c21a281e8443746a8242917cbdd62af0440b694d63b2b
+Deleted: sha256:1ab91357ec87ac9ba8184f2f12678af44f7dd09dc35c140d204cef45af2ba1e3
+Deleted: sha256:a88853aee697ff58987fcf38791f06643af51e61207120d0f3152379dba6f85e
+Deleted: sha256:5fbc53cc2c546e873d42188b83d880d68cd1899e441298773246b89b26dbe381
+Deleted: sha256:bb75f520dc6e2b6c839137a04e6b5b3d0bd9f29d39af8dd485465877b93f9420
+Deleted: sha256:3f440dd3bdb68c850d9501c6b7a249902344628e8fd828c0cb3522f4dda24171
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

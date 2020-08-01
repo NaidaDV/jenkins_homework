@@ -1,11 +1,10 @@
-# First homework - container with nginx inside
-
-# Table of contents 
+## First homework - container with nginx inside
+## Table of contents 
 1. Dockerfile - content with comments
 2. nginx.conf - changing nginx port
 3. Jenkinsfile - content with comments
 4. Workflow
-# Dockerfile - content with comments 
+## Dockerfile - content with comments 
 ~~~
 # Using ubuntu 20.04
 FROM ubuntu:20.04
@@ -35,7 +34,7 @@ RUN chmod -R u+w /etc/nginx/ && chmod -R u+w /var/log/nginx/ && chmod -R u+w /va
 USER nginx_admin
 CMD ["nginx", "-g", "daemon off;"]
 ~~~
-# nginx.conf - changing nginx port
+## nginx.conf - changing nginx port
 For changing default nginx port I have added this directive to http:
 ~~~
 server {
@@ -47,23 +46,23 @@ server {
     }
 ~~~
 So, now nginx working on port 8081, broadcasting it's default index.html
-# Jenkinsfile - content with comments
+## Jenkinsfile - content with comments
 ~~~  
 pipeline {
-	//Adding docker hub registry and credentials info; defining variable dockerImage
+//Adding docker hub registry and credentials info; defining variable dockerImage
 	environment { 
         	registry = "naidadv/courses_homework2" 
         	registryCredential = 'doc-hub-cred' 
         	dockerImage = '' 
 }
-	//Using jenkins slave with label "slave_homework"
+//Using jenkins slave with label "slave_homework"
 	agent {
 		node {
         		label 'slave_homework'
 	}
 }
 	stages {
-		//Building docker image from dockerfile in first_homework_container_with_nginx/
+//Building docker image from dockerfile in first_homework_container_with_nginx/
 		stage('Building image') {
         		steps {
         			script {
@@ -71,7 +70,7 @@ pipeline {
                 }
 	}
 }
-		//Testing image by runnung container and sending request to forwarded port on localhost
+//Testing image by runnung container and sending request to forwarded port on localhost
 		stage('Testing image') {
         		steps {
             			sh "docker run -itd -p '8081:8081' --name 'container_${env.BUILD_ID}' 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
@@ -79,7 +78,7 @@ pipeline {
             			sh "docker stop 'container_${env.BUILD_ID}' && docker rm 'container_${env.BUILD_ID}'"
         }
 }       
-		/Pusing image to hub.docker.com 
+//Pusing image to hub.docker.com 
 		stage('Push image') {
         		steps {
         			script {
@@ -90,7 +89,7 @@ pipeline {
 		}
 	}    
 }
-	//Post actions that will be donne anyway, even after some stage fail - clearing workspace (deleting created images and clearing build directory)
+//Post actions that will be donne anyway, even after some stage fail - clearing workspace (deleting created images and clearing build directory)
 	post { 
         	always {
 			sh "docker rmi $registry:build_${env.BUILD_ID}"
@@ -100,7 +99,7 @@ pipeline {
 	}
 }
 ~~~
-# Workflow
+## Workflow
 I have added my git repo and jenkinsfile pass to job settings:
 
 ![](https://github.com/NaidaDV/jenkins_homework/blob/master/first_homework_container_with_nginx/screenshots/1.png)
@@ -113,5 +112,5 @@ There are 3 scripted stages and 2 declarative (Checkot SCM and Post actions):
 
 ![](https://github.com/NaidaDV/jenkins_homework/blob/master/first_homework_container_with_nginx/screenshots/3.png)
 
-Also homefork folder include runtime_output.txt where you can find full successful output from Jenkins runtime.
+Also homework folder include runtime_output.txt where you can find full successful output from Jenkins runtime.
 Dockerhub is: https://hub.docker.com/repository/docker/naidadv/courses_homework2

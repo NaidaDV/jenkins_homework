@@ -1,26 +1,30 @@
 pipeline {
-    
+// Using jenkins slave with label "slave_homework"
 	agent {
 		node {
 			label 'slave_homework'
 	}
 }
+// Using Jenkins global tools - maven. Openjdk-11 is pre-installed on host, because this openjdk version couldn't be installed automaticly by Jenkins, but required by application.
 	tools { 
         maven 'maven 3.6.3'
 		
 }
+// Checkout openjdk and maven version
     stages { 
-		stage('Check jdk and maven') {
+		stage('Checkout jdk and maven') {
 			steps {
 				sh "java -version"
 				sh "mvn -v"
 	}
 }
+// Compiling web-app from source code
 		stage('Compiling web-app') {
 			steps {
 				sh "mvn package -f 'second_homework_java_web_app/springbootwebapp/pom.xml'"
 	}
 }
+// Building image, where application will run for test
 		stage('Building images') {
 			steps {
 				script {
@@ -28,11 +32,13 @@ pipeline {
         }
 	}
 }
+// Running the container with web-application
 		stage('Run container with web-app') {
 			steps {
 				sh "docker run -itd -p '8090:8080' --name 'container_${env.BUILD_ID}' 'image:build_${env.BUILD_ID}'"
 	}
 }
+// Test application by "wget" and "curl", sending the request on localhost forwarded port
 		stage('Test web-app') {
 			steps {
 				sh "wget -S localhost:8090"
@@ -40,6 +46,7 @@ pipeline {
 		}
 	}            
 }
+//Post actions that will be donne anyway, even after some stage fail - clearing workspace (deleting created container and images; clearing build directory)
 	post('Cleaning workspace') { 
         always {
 			sh "docker stop 'container_${env.BUILD_ID}' && docker rm 'container_${env.BUILD_ID}'"
