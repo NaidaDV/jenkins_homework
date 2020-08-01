@@ -13,7 +13,7 @@ FROM ubuntu:20.04
 # Information about me
 MAINTAINER denys naida <NaidaDV@nmu.one>
 
-# Updating, upgrading && installing reqired soft
+# Updating, upgrading && installing required soft
 RUN apt-get update && apt-get upgrade -y && apt-get install nginx -y && apt-get install net-tools -y && apt-get install openjdk-11-jdk -y && apt-get install sudo -y && apt-get install curl -y
 
 # Adding user with privileges
@@ -101,7 +101,7 @@ pipeline {
 }
 ~~~
 # Workflow
-I have added my git repo and jenkinsfile pass to job settings:
+I have added my git repo and jenkinsfile path to job settings:
 
 ![](https://github.com/NaidaDV/jenkins_homework/blob/master/first_homework_container_with_nginx/screenshots/1.png)
 
