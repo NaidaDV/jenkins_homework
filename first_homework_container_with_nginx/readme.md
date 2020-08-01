@@ -103,15 +103,15 @@ pipeline {
 # Workflow
 I have added my git repo and jenkinsfile pass to job settings:
 
-![](first_homework_container_with_nginx\screenshots\1.png)
+![](\first_homework_container_with_nginx\screenshots\1.png)
 
 There are 3 scripted stages and 2 declarative (Checkot SCM and Post actions):
 
-![](first_homework_container_with_nginx\screenshots\2.png)
+![](\first_homework_container_with_nginx\screenshots\2.png)
 
 "Nginx is running inside container" proofs:
 
-![](first_homework_container_with_nginx\screenshots\3.png)
+![](\first_homework_container_with_nginx\screenshots\3.png)
 
 Also homefork folder include runtime_output.txt where you can find full successful output from Jenkins runtime.
 Dockerhub is: https://hub.docker.com/repository/docker/naidadv/courses_homework2
