@@ -1,47 +1,44 @@
 pipeline {
-    environment { 
-        registry = "naidadv/courses_homework2" 
-        registryCredential = '74b9705b-baac-41a9-a3b9-e495f96c666e' 
-        dockerImage = '' 
-    }
+	environment { 
+        	registry = "naidadv/courses_homework2" 
+        	registryCredential = 'doc-hub-cred' 
+        	dockerImage = '' 
+}
 	agent {
-	node {
-        label 'slave_homework'
+		node {
+        		label 'slave_homework'
 	}
 }
-            stages {
-                
-    stage('Building image') {
-        steps {
-            script {
-                dockerImage = docker.build("naidadv/courses_homework2:build_${env.BUILD_ID}", "first_homework_container_with_nginx/")
+	stages {       
+		stage('Building image') {
+        		steps {
+        			script {
+                			dockerImage = docker.build("naidadv/courses_homework2:build_${env.BUILD_ID}", "first_homework_container_with_nginx/")
                 }
 	}
 }
-                    
-    stage('Testing image') {
-        steps {
-            sh "docker run -itd -p '8081:8081' --name 'container_${env.BUILD_ID}' 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
-            sh "curl localhost:8081"
-            sh "docker stop 'container_${env.BUILD_ID}' && docker rm 'container_${env.BUILD_ID}'"
+		stage('Testing image') {
+        		steps {
+            			sh "docker run -itd -p '8081:8081' --name 'container_${env.BUILD_ID}' 'naidadv/courses_homework2:build_${env.BUILD_ID}'"
+            			sh "curl localhost:8081"
+            			sh "docker stop 'container_${env.BUILD_ID}' && docker rm 'container_${env.BUILD_ID}'"
         }
-}
-                            
-    stage('Push image') {
-        steps {
-        script {
-                docker.withRegistry( 'https://registry.hub.docker.com/', registryCredential )  {
-                    dockerImage.push()
+}       
+		stage('Push image') {
+        		steps {
+        			script {
+                			docker.withRegistry( 'https://registry.hub.docker.com/', registryCredential )  {
+                    			dockerImage.push()
 				}
 			}
 		}
 	}    
 }
 	post { 
-        always {
-		sh "docker rmi $registry:build_${env.BUILD_ID}"
-		sh "docker rmi -f 'registry.hub.docker.com/naidadv/courses_homework2:build_${env.BUILD_ID}'"
-		cleanWs()
+        	always {
+			sh "docker rmi $registry:build_${env.BUILD_ID}"
+			sh "docker rmi -f 'registry.hub.docker.com/naidadv/courses_homework2:build_${env.BUILD_ID}'"
+			cleanWs()
 		}
 	}
 }
