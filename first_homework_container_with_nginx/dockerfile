@@ -1,4 +1,4 @@
-# Using ubuntu 20.04 LaTex
+# Using ubuntu 20.04
 FROM ubuntu:20.04
 
 # Information about me
