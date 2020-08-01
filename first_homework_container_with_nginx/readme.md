@@ -100,7 +100,7 @@ pipeline {
 }
 ~~~
 ## Workflow
-I have added my git repo and jenkinsfile pass to job settings:
+I have added my git repo and jenkinsfile path to job settings:
 
 ![](https://github.com/NaidaDV/jenkins_homework/blob/master/first_homework_container_with_nginx/screenshots/1.png)
 
